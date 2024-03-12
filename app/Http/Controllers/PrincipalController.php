@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\MotivoContatoModel;
 
 class PrincipalController extends Controller
 {
-    public function principal()
+    public function index()
     {
-        return view('site.principal', ['titulo' => 'Home']);
+        // Traz todos os motivos de contato
+        $motivos_contatos = MotivoContatoModel::all();
+
+        return view('site.principal', ['motivos_contatos' => $motivos_contatos], ['titulo' => 'Principal']);
     }
 }
