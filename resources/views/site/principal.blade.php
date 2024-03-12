@@ -30,8 +30,25 @@
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
                 <p>
-                @component('site.layouts._components.form_contato')
-                @endcomponent
+                <form action="{{ route('site.contato') }}" method="post">
+                    @csrf
+                    <input name="nome" type="text" placeholder="Nome" required class="borda-preta">
+                    <br>
+                    <input name="telefone" type="text" placeholder="Telefone" required class="borda-preta">
+                    <br>
+                    <input name="email" type="text" placeholder="E-mail" required class="borda-preta">
+                    <br>
+                    <select name="motivo_contato_id" required class="borda-preta">
+                        @foreach($motivos_contatos as $key => $motivo_contato)7
+                        <option value="{{$motivo_contato->id}}" {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>{{$motivo_contato->motivo}}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <textarea name="mensagem" class="borda-preta" required
+                              placeholder="Preencha aqui a sua mensagem"></textarea>
+                    <br>
+                    <button type="submit" class="borda-preta">ENVIAR</button>
+                </form>
             </div>
         </div>
     </div>

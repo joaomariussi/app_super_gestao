@@ -11,8 +11,37 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                @component('site.layouts._components.form_contato')
-                @endcomponent
+                <form action="{{ route('site.contato') }}" method="post">
+                    @csrf
+                    <input name="nome" type="text" placeholder="Nome" required class="borda-preta">
+                    <br>
+                    <input name="telefone" type="text" placeholder="Telefone" required class="borda-preta">
+                    <br>
+                    <input name="email" type="text" placeholder="E-mail" required class="borda-preta">
+                    <br>
+                    <select name="motivo_contato_id" required class="borda-preta">
+                        <option value="">Qual o motivo do contato?</option>
+                        @foreach($motivos_contatos as $key => $motivo_contato)7
+                            <option value="{{$motivo_contato->id}}" {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>{{$motivo_contato->motivo}}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <textarea name="mensagem" class="borda-preta" required
+                              placeholder="Preencha aqui a sua mensagem"></textarea>
+                    <br>
+                    <button type="submit" class="borda-preta">ENVIAR</button>
+                </form>
+
+                @if($errors->any())
+                    <div class="erros">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
@@ -35,4 +64,10 @@
             <img src="img/mapa.png">
         </div>
     </div>
+
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif
 @endsection

@@ -5,10 +5,11 @@
     </div>
 
     <div class="menu">
-        <ul>
-            <li><a href="{{ route('site.index') }}">Principal</a></li>
-            <li><a href="{{ route('site.sobrenos') }}">Sobre Nós</a></li>
-            <li><a href="{{ route('site.contato') }}">Contato</a></li>
-        </ul>
+        <nav>
+            <a href="{{ route('logout') }}">Sair</a>
+            <a href="{{ route('site.principal') }}">Principal</a>
+            <a href="{{ route('site.sobrenos') }}">Sobre Nós</a>
+            <a href="{{ route('site.contato') }}">Contato</a>
+        </nav>
     </div>
 </div>
