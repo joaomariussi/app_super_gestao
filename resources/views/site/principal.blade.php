@@ -1,4 +1,4 @@
-@extends('site.layouts.basico')
+@extends('app.layouts.basico')
 
 @section('titulo', $titulo)
 
@@ -39,8 +39,10 @@
                     <input name="email" type="text" placeholder="E-mail" required class="borda-preta">
                     <br>
                     <select name="motivo_contato_id" required class="borda-preta">
-                        @foreach($motivos_contatos as $key => $motivo_contato)7
-                        <option value="{{$motivo_contato->id}}" {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>{{$motivo_contato->motivo}}</option>
+                        @foreach($motivos_contatos as $key => $motivo_contato)
+                            7
+                            <option
+                                value="{{$motivo_contato->id}}" {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>{{$motivo_contato->motivo}}</option>
                         @endforeach
                     </select>
                     <br>

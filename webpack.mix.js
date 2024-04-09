@@ -1,5 +1,13 @@
 const mix = require('laravel-mix');
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .copy('resources/css/principal.css', 'public/css');
+const glob = require('glob')
+
+function mixAssetsDir(query, cb) {
+    (glob.sync('resources/' + query) || []).forEach(f => {
+        f = f.replace(/[\\\/]+/g, '/');
+        cb(f, f.replace('resources', 'public'));
+    });
+}
+mixAssetsDir('js/**/*.js', (src, dest) => mix.js(src, dest));
+
+

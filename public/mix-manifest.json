@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/libraries/jquery/jquery.js": "/js/libraries/jquery/jquery.js",
+    "/js/scripts.js": "/js/scripts.js",
+    "/js/table-fornecedor.js": "/js/table-fornecedor.js"
 }
