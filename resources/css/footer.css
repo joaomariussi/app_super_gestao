@@ -1,0 +1,24 @@
+.rodape {
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.redes-sociais, .area-contato, .localizacao {
+    width: calc(100% / 3 - 20px);
+    text-align: center;
+    border-top: solid 1px #ccc;
+    padding: 20px;
+}
+
+.redes-sociais img {
+    margin: 0 10px;
+}
+
+.numero-contato, .email-contato {
+    font-size: 1em;
+    font-weight: bold;
+    display: block;
+}

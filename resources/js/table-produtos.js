@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#table-fornecedores').DataTable({
+    $('#table-produtos').DataTable({
         language: {
             "emptyTable": "Nenhum registro encontrado",
             "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

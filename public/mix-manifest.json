@@ -1,7 +1,27 @@
 {
+    "/css/adicionar-cliente.css": "/css/adicionar-cliente.css",
+    "/css/adicionar-fornecedor.css": "/css/adicionar-fornecedor.css",
+    "/css/adicionar-produto.css": "/css/adicionar-produto.css",
+    "/css/basico.css": "/css/basico.css",
+    "/css/contato.css": "/css/contato.css",
+    "/css/footer.css": "/css/footer.css",
+    "/css/header.css": "/css/header.css",
+    "/css/index-cliente.css": "/css/index-cliente.css",
+    "/css/index-fornecedor.css": "/css/index-fornecedor.css",
+    "/css/index-produto.css": "/css/index-produto.css",
+    "/css/login.css": "/css/login.css",
+    "/css/principal.css": "/css/principal.css",
+    "/css/sobre-nos.css": "/css/sobre-nos.css",
+    "/css/visualizar-produto.css": "/css/visualizar-produto.css",
     "/js/app.js": "/js/app.js",
+    "/js/app.js.LICENSE.txt": "/js/app.js.LICENSE.txt",
     "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/bootstrap.js.LICENSE.txt": "/js/bootstrap.js.LICENSE.txt",
+    "/js/jquery.js": "/js/jquery.js",
     "/js/libraries/jquery/jquery.js": "/js/libraries/jquery/jquery.js",
+    "/js/libraries/jquery/jquery.js.LICENSE.txt": "/js/libraries/jquery/jquery.js.LICENSE.txt",
     "/js/scripts.js": "/js/scripts.js",
-    "/js/table-fornecedor.js": "/js/table-fornecedor.js"
+    "/js/table-clientes.js": "/js/table-clientes.js",
+    "/js/table-fornecedor.js": "/js/table-fornecedor.js",
+    "/js/table-produtos.js": "/js/table-produtos.js"
 }

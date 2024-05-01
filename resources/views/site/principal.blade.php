@@ -1,6 +1,8 @@
-@extends('app.layouts.basico')
+@extends('app.layouts.basic')
 
 @section('titulo', $titulo)
+
+<link rel="stylesheet" href="{{ asset('css/principal.css') }}">
 
 @section('conteudo')
 
@@ -26,32 +28,36 @@
         </div>
 
         <div class="direita">
-            <div class="contato">
+            <div class="contato-home">
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
                 <p>
-                <form action="{{ route('site.contato') }}" method="post">
+                <form class="form-home" action="{{ route('site.contato') }}" method="post">
                     @csrf
-                    <input name="nome" type="text" placeholder="Nome" required class="borda-preta">
+                    <input name="nome" type="text" placeholder="Nome" required class="form-nome">
                     <br>
-                    <input name="telefone" type="text" placeholder="Telefone" required class="borda-preta">
+                    <input name="telefone" type="text" placeholder="Telefone" required class="form-telefone">
                     <br>
-                    <input name="email" type="text" placeholder="E-mail" required class="borda-preta">
+                    <input name="email" type="text" placeholder="E-mail" required class="form-email">
                     <br>
-                    <select name="motivo_contato_id" required class="borda-preta">
+                    <select name="motivo_contato_id" required class="select-duvida">
+                        <option value="">Qual o motivo do contato?</option>
                         @foreach($motivos_contatos as $key => $motivo_contato)
-                            7
                             <option
-                                value="{{$motivo_contato->id}}" {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>{{$motivo_contato->motivo}}</option>
+                                value="{{$motivo_contato->id}}"
+                                {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>
+                                {{$motivo_contato->motivo}}</option>
                         @endforeach
                     </select>
                     <br>
-                    <textarea name="mensagem" class="borda-preta" required
+                    <textarea name="mensagem" class="form-mensagem" required
                               placeholder="Preencha aqui a sua mensagem"></textarea>
                     <br>
-                    <button type="submit" class="borda-preta">ENVIAR</button>
+                    <button type="submit" class="btn-enviar">Enviar</button>
                 </form>
             </div>
         </div>
     </div>
+
+    @include('app.layouts._partials.footer')
 @endsection

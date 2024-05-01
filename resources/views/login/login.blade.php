@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -30,7 +31,6 @@
 
         <form action="{{ route('login') }}" method="post" class="login-form">
             @csrf
-
             <div class="form-group">
                 <input class="form-input" type="text" name="email" placeholder="E-mail" value="teste@gmail.com" required>
                 @error('email')
@@ -43,13 +43,6 @@
                 @error('password')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox">
-                    <input type="checkbox" value="remember" id="rememberMe" name="remember">
-                    Lembrar-me
-                </label>
             </div>
 
             <div class="form-group">

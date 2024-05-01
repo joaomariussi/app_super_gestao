@@ -1,10 +1,12 @@
-@extends('app.layouts.basico')
+@extends('app.layouts.basic')
+
+<title>Gerenciamento de Fornecedores</title>
 
 <script src="{{asset('js/libraries/jquery/jquery.js')}}"></script>
 <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
 
 <link rel="stylesheet" href="{{ asset('css/index-fornecedor.css') }}">
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css"/>
 
 <script src="{{ asset('js/table-fornecedor.js') }}"></script>
 
@@ -30,42 +32,46 @@
 
             <table class="table table-striped" id="table-fornecedores">
                 <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Site</th>
-                        <th scope="col">UF</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Opções</th>
-                    </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Site</th>
+                    <th scope="col">UF</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Opções</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @forelse ($fornecedores as $fornecedor)
-                        <tr>
-                            <th scope="row">{{ $fornecedor->id }}</th>
-                            <td>{{ $fornecedor->nome }}</td>
-                            <td>{{ $fornecedor->site }}</td>
-                            <td>{{ $fornecedor->uf }}</td>
-                            <td>{{ $fornecedor->email }}</td>
-                            <td>
-                                <form class="form-group" id="form-editar-fornecedor-{{ $fornecedor->id }}"
-                                      action="{{ route('app.fornecedor.editar', ['id' => $fornecedor->id]) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="fornecedor_id" value="{{ $fornecedor->id }}">
-                                    <button type="button" class="button-edit"
-                                            onclick="openModalForEdit('{{ $fornecedor->nome }}', '{{ $fornecedor->site }}','{{ $fornecedor->uf }}',
-                                        '{{ $fornecedor->email }}')">Editar</button>
-                                    <button type="button" class="button-delete"
-                                            onclick="excluirFornecedor('{{ $fornecedor->id }}')">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6">Nenhum fornecedor encontrado</td>
-                        </tr>
-                    @endforelse
+                @forelse ($fornecedores as $fornecedor)
+                    <tr>
+                        <th scope="row">{{ $fornecedor->id }}</th>
+                        <td>{{ $fornecedor->nome }}</td>
+                        <td>{{ $fornecedor->site }}</td>
+                        <td>{{ $fornecedor->uf }}</td>
+                        <td>{{ $fornecedor->email }}</td>
+                        <td>
+                            <form class="form-group" id="form-editar-fornecedor-{{ $fornecedor->id }}"
+                                  action="{{ route('app.fornecedor.editar', ['id' => $fornecedor->id]) }}"
+                                  method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="fornecedor_id" value="{{ $fornecedor->id }}">
+                                <button type="button" class="button-edit"
+                                        onclick="openModalForEdit('{{ $fornecedor->nome }}', '{{ $fornecedor->site }}',
+                                            '{{ $fornecedor->uf }}',
+                                        '{{ $fornecedor->email }}')">Editar
+                                </button>
+                                <button type="button" class="button-delete"
+                                        onclick="excluirFornecedor('{{ $fornecedor->id }}')">Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">Nenhum fornecedor encontrado</td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>
@@ -75,10 +81,26 @@
     <div id="modal-fornecedor" class="modal-fornecedor">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <input type="text" class="nome-modal" id="editNome" name="nome" placeholder="Nome">
-            <input type="text" class="site-modal" id="editSite" name="site" placeholder="Site">
-            <input type="text" class="uf-modal" id="editUF" name="uf" placeholder="UF">
-            <input type="text" class="email-modal" id="editEmail" name="email" placeholder="Email">
+            <div class="form-group">
+                <label for="nome" class="label-nome">Nome</label>
+                <input type="text" class="nome-modal" id="editNome" name="nome" placeholder="Nome">
+            </div>
+
+            <div class="form-group">
+                <label for="site" class="label-site">Site</label>
+                <input type="text" class="site-modal" id="editSite" name="site" placeholder="Site">
+            </div>
+
+            <div class="form-group">
+                <label for="uf" class="label-uf">UF</label>
+                <input type="text" class="uf-modal" id="editUF" name="uf" placeholder="UF">
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="label-email">Email</label>
+                <input type="text" class="email-modal" id="editEmail" name="email" placeholder="Email">
+            </div>
+
             <button type="button" class="button-save-modal" onclick="saveChanges()">Salvar</button>
             <button type="button" class="button-close-modal" onclick="closeModal()">Cancelar</button>
         </div>
@@ -120,7 +142,7 @@
                 success: function (response) {
                     console.log(response.message);
                     // Recarrega a página após 1 segundo
-                    setTimeout(function() {
+                    setTimeout(function () {
                         location.reload();
                     }, 1000);
                     // Fecha o modal.
@@ -144,8 +166,10 @@
                     dataType: 'json', // Define o tipo de retorno
                     success: function (response) {
                         console.log(response.message);
+                        // Destroi a instância atual do DataTables
+                        $('#table-fornecedores').DataTable().destroy();
                         // Recarrega a página após 1 segundo
-                        setTimeout(function() {
+                        setTimeout(function () {
                             location.reload();
                         }, 1000);
                     },

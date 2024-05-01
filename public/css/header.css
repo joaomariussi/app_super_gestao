@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo {
+    width: 50px;
+    float: left;
+    margin-left: 40px;
+}
+
+.topo {
+    width: 100%;
+    background-color: #f8f8f8;
+    position: absolute;
+    padding: 20px 0px 10px 0px;
+}
+
+.menu {
+    float: right;
+    margin-right: 40px;
+}
+
+.menu li {
+    display: inline;
+    float: left;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu a {
+    text-decoration: none;
+    padding: 14px 16px;
+    color: #333;
+}
+
+.menu a:hover {
+    color: #268fd0;
+}
+
+.titulo-pagina {
+    padding: 80px 0 10px;
+    background-color: #2a9ee2;
+    color: white;
+}
+
+.informacao-pagina p {
+    color: #333;
+}

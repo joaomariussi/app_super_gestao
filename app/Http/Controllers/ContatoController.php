@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MotivoContatoModel;
 use App\Models\SiteContatoModel;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
@@ -17,7 +18,7 @@ class ContatoController extends Controller
         return view('site.contato', ['motivos_contatos' => $motivos_contatos], ['titulo' => 'Contato']);
     }
 
-    public function salvar(Request $request)
+    public function salvar(Request $request): RedirectResponse
     {
         $regras = [
             'nome' => 'required',
@@ -42,5 +43,7 @@ class ContatoController extends Controller
         } catch (Exception $e) {
             return redirect()->route('site.contato');
         }
+
+        return redirect()->route('site.contato');
     }
 }

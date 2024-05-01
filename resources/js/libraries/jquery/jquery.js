@@ -1,8 +1,5 @@
-import * as jQuery from 'jquery'
+window.jQuery = window.$ = require('jquery');
 
 try {
     window.$ = window.jQuery = require('jquery');
 } catch (e) {}
-
-
-export { jQuery }

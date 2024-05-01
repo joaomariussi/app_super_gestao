@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\FornecedorModel;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -14,68 +13,79 @@ class FornecedorController extends Controller
     {
         try {
             $fornecedores = FornecedorModel::all();
-            return view('app.fornecedor.index', ['fornecedores' => $fornecedores]);
+            return view('app.fornecedor.index',compact('fornecedores'));
         } catch (Exception $e) {
             return view('app.fornecedor.index', ['message' => $e->getMessage()]);
         }
     }
 
-    public function search(Request $request): JsonResponse
-    {
-        $query = $request->input('query');
-
-        // Lógica para buscar fornecedores com base na consulta do usuário
-        $fornecedores = FornecedorModel::where('nome', 'like', '%' . $query . '%')->get();
-
-        // Retorna os resultados da busca como um array JSON
-        return response()->json($fornecedores);
-    }
+//    public function search(Request $request): JsonResponse
+//    {
+//        try {
+//            $fornecedores = FornecedorModel::where('nome', 'like', '%' . $request->input('nome') . '%')
+//                ->orWhere('site', 'like', '%' . $request->input('site') . '%')
+//                ->orWhere('uf', 'like', '%' . $request->input('uf') . '%')
+//                ->get();
+//
+//            return response()->json($fornecedores);
+//        } catch (Exception $e) {
+//            return response()->json(['error' => $e->getMessage()], 500);
+//        }
+//    }
 
     /**
      * @throws Exception
      */
     public function adicionar(Request $request)
     {
-        $message = '';
+        try {
+            if ($request->input('_token') != '') {
+                $fornecedor = new FornecedorModel();
+                $fornecedor->create($request->all());
+                return redirect()->route('app.fornecedor.adicionar')->with('success', 'Fornecedor adicionado com sucesso!');
+            }
 
-        // Extende a classe FornecedorModel
-        $fornecedor = new FornecedorModel();
-
-        if ($request->input('_token') != '') {
-            $message = 'Fornecedor adicionado com sucesso!';
-            $fornecedor->create($request->all());
+            return view('app.fornecedor.adicionar');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
-
-        return view('app.fornecedor.adicionar', ['message' => $message]);
     }
 
     public function editar(Request $request, $id): JsonResponse
     {
-        // Busca o fornecedor pelo ID
-        $fornecedor = FornecedorModel::find($id);
+        try {
+            // Busca o fornecedor pelo ID
+            $fornecedor = FornecedorModel::find($id);
 
-        // Atualiza os dados do fornecedor com os dados do formulário
-        $fornecedor->nome = $request->input('nome');
-        $fornecedor->site = $request->input('site');
-        $fornecedor->uf = $request->input('uf');
-        $fornecedor->email = $request->input('email');
-        $fornecedor->save();
-
-        return response()->json(['message' => 'Fornecedor editado com sucesso!']);
+            // Verifica se o fornecedor existe
+            if ($fornecedor) {
+                // Atualiza o fornecedor
+                $fornecedor->update($request->all());
+                return response()->json(['message' => 'Fornecedor atualizado com sucesso!']);
+            } else {
+                return response()->json(['error' => 'Fornecedor não encontrado!'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function excluir($id): JsonResponse
     {
-        // Encontre o fornecedor pelo ID
-        $fornecedor = FornecedorModel::find($id);
+        try {
+            // Busca o fornecedor pelo ID
+            $fornecedor = FornecedorModel::find($id);
 
-        // Verifique se o fornecedor existe
-        if ($fornecedor) {
-            // Exclua o fornecedor
-            $fornecedor->delete();
-            return response()->json(['message' => 'Fornecedor excluído com sucesso!']);
-        } else {
-            return response()->json(['error' => 'Fornecedor não encontrado!'], 404);
+            // Verifique se o fornecedor existe
+            if ($fornecedor) {
+                // Excluí o fornecedor
+                $fornecedor->delete();
+                return response()->json(['message' => 'Fornecedor excluído com sucesso!']);
+            } else {
+                return response()->json(['error' => 'Fornecedor não encontrado!'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
