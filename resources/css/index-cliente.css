@@ -1,0 +1,327 @@
+.conteudo-pagina {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.titulo-cliente {
+    padding: 70px 0 10px 0;
+    margin-bottom: 10px;
+    background-color: #2a9ee2;
+    text-align: center;
+}
+
+.menu-cliente {
+    width: 100%;
+    overflow: hidden;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.menu-cliente .button-wrapper {
+    float: left;
+    margin-right: 23px;
+    padding: 5px;
+    display: flex;
+}
+
+.button-add {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+
+.button-add:hover {
+    background-color: #45a049;
+}
+
+.button-back {
+    width: auto;
+    background-color: #414141;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+.button-back:hover {
+    background-color: #504f4f;
+}
+
+.button-edit {
+    width: auto;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+.button-edit:hover {
+    background-color: #007a9b;
+}
+
+.button-delete {
+    width: auto;
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+.button-delete:hover {
+    background-color: #da251d;
+}
+.modal-cliente {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 28px;
+    border: 1px solid #888;
+    width: 40%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-save-modal {
+    width: auto;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.button-save-modal:hover {
+    background-color: #45a049;
+}
+
+.button-close-modal {
+    width: auto;
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.button-close-modal:hover {
+    background-color: #da251d;
+}
+
+.label-nome {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.nome-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-site {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.label-cpf {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.cpf-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-email {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.email-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-telefone {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.telefone-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-endereco {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.endereco-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-cep {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.cep-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-estado {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.estado-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.label-cidade {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.cidade-modal {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.close-modal {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px; /* Ajuste conforme necessário */
+    left: 10px; /* Ajuste conforme necessário */
+    cursor: pointer; /* Adicionando um cursor indicando que é clicável */
+}
+
+

@@ -1,0 +1,181 @@
+.titulo-cliente {
+    padding: 70px 0 10px 0;
+    margin-bottom: 10px;
+    background-color: #2a9ee2;
+    text-align: center;
+}
+
+.form-add-cliente {
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+select, textarea, button {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0px 10px 0px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+}
+
+.conteudo-pagina {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.informacao-pagina-cliente {
+    max-width: 1200px;
+    margin: 20px auto; /* Define a margem superior e inferior como 20px e as laterais como automáticas para centralizar */
+    background-color: #fff;
+}
+
+.button-add {
+    width: 50%;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.button-add:hover {
+    background-color: #45a049;
+}
+
+.button-back {
+    width: 50%;
+    background-color: #414141;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.button-back:hover {
+    background-color: #504f4f;
+}
+
+.input-nome-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-email-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-cpf-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-uf-cliente{
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-telefone-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-endereco-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-cep-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.input-cidade-cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.alert-success {
+    background-color: #c3eccd;
+    color: #155724;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #b60c19;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+

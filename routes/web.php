@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoginController;
@@ -21,7 +22,16 @@ Route::any('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])-
 Route::post('/fornecedor/editar/{id}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
 Route::post('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
 
-Route::get('/produtos', [ProdutoController::class, 'index'])->name('app.produtos');
+Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
+Route::any('/produto/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.adicionar');
+Route::post('/produto/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
+Route::post('/produto/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
+Route::get('/produto/visualizar', [ProdutoController::class, 'visualizar'])->name('app.produto.visualizar');
+
+Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente.index');
+Route::any('/cliente/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.adicionar');
+Route::post('/cliente/editar/{id}', [ClienteController::class, 'editar'])->name('app.cliente.editar');
+Route::post('/cliente/excluir/{id}', [ClienteController::class, 'excluir'])->name('app.cliente.excluir');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
