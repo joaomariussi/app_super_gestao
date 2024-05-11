@@ -20,30 +20,14 @@ class ContatoController extends Controller
 
     public function salvar(Request $request): RedirectResponse
     {
-        $regras = [
-            'nome' => 'required',
-            'telefone' => 'required',
-            'email' => 'email',
-            'motivo_contato_id' => 'required',
-            'mensagem' => 'required'
-        ];
-
-        $request->validate($regras);
-
         try {
-            $dadosContato = [
-                'nome' => $request->input('nome'),
-                'telefone' => $request->input('telefone'),
-                'email' => $request->input('email'),
-                'motivo_contato_id' => $request->input('motivo_contato_id'),
-                'mensagem' => $request->input('mensagem')
-            ];
-            SiteContatoModel::create($dadosContato);
+            // Salva os dados no banco de dados
+            SiteContatoModel::create($request->all());
 
+            return redirect()->route('site.principal')->with('success', 'Contato cadastrado com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('site.contato');
+            return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('site.contato');
     }
 }

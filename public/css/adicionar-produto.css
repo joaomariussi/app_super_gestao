@@ -28,7 +28,6 @@ select, textarea, button {
     border-radius: 8px;
 }
 
-
 .button-add {
     width: 50%;
     background-color: #4CAF50;
@@ -199,7 +198,7 @@ select, textarea, button {
     padding: 5px;
     border: none;
     border-radius: 5px;
-    max-width: 300px;
+    max-width: 150px;
     margin: 0 auto;
 }
 
@@ -209,6 +208,6 @@ select, textarea, button {
     padding: 5px;
     border: none;
     border-radius: 5px;
-    max-width: 300px;
+    max-width: 150px;
     margin: 0 auto;
 }

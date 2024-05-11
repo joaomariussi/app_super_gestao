@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 @section('conteudo')
     <div class="conteudo-pagina">
@@ -16,7 +16,6 @@
         </div>
 
         <div class="menu-cliente">
-
             <div class="button-wrapper">
                 <a href="{{ route('app.cliente.adicionar') }}" class="button-add">Novo Cliente</a>
 
@@ -68,9 +67,6 @@
                         </td>
                     </tr>
                 @empty
-                    <tr>
-                        <td colspan="6">Nenhum cliente encontrado</td>
-                    </tr>
                 @endforelse
                 </tbody>
             </table>
@@ -130,7 +126,11 @@
 
         function reloadDataTable() {
             if ($.fn.DataTable.isDataTable('#clientes')) {
-                $('#clientes').DataTable().destroy();
+                let table = $('#clientes').DataTable();
+                table.clear().draw(); // Limpa a tabela sem destruí-la
+                if (table.data().count() > 0) {
+                    table.destroy(); // Destroi apenas se houver dados
+                }
             }
             // Recarrega a página após 1 segundo
             setTimeout(function () {

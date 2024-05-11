@@ -122,5 +122,24 @@ h1 {
     color: #ffffff;
 }
 
+.alert-success {
+    background-color: #c3eccd;
+    color: #155724;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #b60c19;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    max-width: 250px;
+    margin: 0 auto;
+}
 
 

@@ -5,7 +5,7 @@
 
 .menu-fornecedor .button-wrapper {
     float: left;
-    margin-right: 23px; /* Adiciona uma margem à direita para criar espaço entre os botões */
+    padding: 5px;
 }
 
 .button-wrapper {
@@ -29,59 +29,8 @@
     margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
 }
 
-
 .button-add:hover {
     background-color: #45a049;
-}
-
-.filtro-bar {
-    margin-bottom: 20px;
-}
-
-.filtro-bar input[type="text"],
-.filtro-bar button {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
-}
-
-.filtro-bar input[type="text"] {
-    width: 70%;
-}
-
-.filtro-bar button {
-    width: 95px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.filtro-bar button:hover {
-    background-color: #45a049;
-}
-
-.estatisticas p {
-    margin: 10px 0;
-}
-
-.estatisticas span {
-    font-weight: bold;
-}
-
-.autocomplete-suggestion {
-    text-align: left; /* Alinha o texto à esquerda */
-    cursor: pointer; /* Adiciona um cursor de apontador para indicar que os resultados são clicáveis */
-    padding: 5px; /* Adiciona um espaçamento interno para melhorar a aparência */
-    border-bottom: 3px solid #ffffff; /* Adiciona uma borda inferior para separar os resultados */
-    margin-left: 110px;
-}
-
-.search-results {
-    margin-top: 10px; /* Adiciona uma margem superior para separar os resultados da barra de pesquisa */
 }
 
 .button-edit {

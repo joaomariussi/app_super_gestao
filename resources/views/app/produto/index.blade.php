@@ -2,13 +2,11 @@
 
 <title>Gerenciamento de Produtos</title>
 
-<script src="{{asset('js/libraries/jquery/jquery.js')}}"></script>
-<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
 <link rel="stylesheet" href="{{ asset('css/index-produto.css') }}">
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css"/>
 
-<script src="{{ asset('js/table-produtos.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 
 @section('conteudo')
     <div class="conteudo-pagina">
@@ -65,9 +63,6 @@
                         </td>
                     </tr>
                 @empty
-                    <tr>
-                        <td colspan="6">Nenhum produto encontrado</td>
-                    </tr>
                 @endforelse
                 </tbody>
             </table>
@@ -274,7 +269,7 @@
                 });
             }
         }
-
-
     </script>
+
+    <script src="{{ asset('js/table-produtos.js') }}"></script>
 @endsection

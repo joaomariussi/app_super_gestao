@@ -31,7 +31,17 @@
             <div class="contato-home">
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
-                <p>
+
+                @if (session('success'))
+                    <div class="alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <form class="form-home" action="{{ route('site.contato') }}" method="post">
                     @csrf
                     <input name="nome" type="text" placeholder="Nome" required class="form-nome">

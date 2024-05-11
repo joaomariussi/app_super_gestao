@@ -13,6 +13,16 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
+                @if (session('success'))
+                    <div class="alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <form class="form-contato" action="{{ route('site.contato') }}" method="post">
                     @csrf
                     <input name="nome" type="text" placeholder="Nome" required class="form-nome">
@@ -34,17 +44,6 @@
                     <br>
                     <button type="submit" class="btn-enviar">Enviar</button>
                 </form>
-
-                @if($errors->any())
-                    <div class="erros">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
             </div>
         </div>
     </div>
