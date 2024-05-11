@@ -8,6 +8,7 @@
     "/css/header.css": "/css/header.css",
     "/css/index-cliente.css": "/css/index-cliente.css",
     "/css/index-fornecedor.css": "/css/index-fornecedor.css",
+    "/css/index-pedido.css": "/css/index-pedido.css",
     "/css/index-produto.css": "/css/index-produto.css",
     "/css/login.css": "/css/login.css",
     "/css/principal.css": "/css/principal.css",
@@ -23,5 +24,6 @@
     "/js/scripts.js": "/js/scripts.js",
     "/js/table-clientes.js": "/js/table-clientes.js",
     "/js/table-fornecedor.js": "/js/table-fornecedor.js",
+    "/js/table-pedidos.js": "/js/table-pedidos.js",
     "/js/table-produtos.js": "/js/table-produtos.js"
 }

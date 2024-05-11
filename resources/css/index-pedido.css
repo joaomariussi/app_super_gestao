@@ -1,0 +1,94 @@
+.conteudo-pagina {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.titulo-pedido {
+    padding: 70px 0 10px 0;
+    margin-bottom: 10px;
+    background-color: #2a9ee2;
+    text-align: center;
+}
+
+.menu-pedido {
+    width: 100%;
+    overflow: hidden;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+.menu-pedido .button-wrapper {
+    float: left;
+    margin-right: 23px;
+    padding: 5px;
+    display: flex;
+}
+
+.button-add {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+.button-add:hover {
+    background-color: #45a049;
+}
+
+.button-back {
+    width: auto;
+    background-color: #414141;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+.button-back:hover {
+    background-color: #504f4f;
+}
+
+.button-delete {
+    width: auto;
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
+}
+
+.button-delete:hover {
+    background-color: #da251d;
+}
+
+.sorting_1 td {
+    text-align: center;
+}

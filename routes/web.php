@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SobreNosController;
@@ -32,6 +33,12 @@ Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente.i
 Route::any('/cliente/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.adicionar');
 Route::post('/cliente/editar/{id}', [ClienteController::class, 'editar'])->name('app.cliente.editar');
 Route::post('/cliente/excluir/{id}', [ClienteController::class, 'excluir'])->name('app.cliente.excluir');
+
+Route::post('/verifica-cpf', [ClienteController::class, 'verificaCpf'])->name('app.cliente.verifica-cpf');
+Route::post('/verifica-email', [ClienteController::class, 'verificaEmail'])->name('app.cliente.verifica-email');
+
+Route::get('/pedido', [PedidoController::class, 'index'])->name('app.pedido');
+Route::get('/pedido/adicionar', [PedidoController::class, 'adicionar'])->name('app.pedido.adicionar');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');

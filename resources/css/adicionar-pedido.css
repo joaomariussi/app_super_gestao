@@ -1,0 +1,149 @@
+select, textarea, button {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+}
+
+.conteudo-pagina {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.informacao-pagina-pedido {
+    max-width: 1200px;
+    margin: 20px auto; /* Define a margem superior e inferior como 20px e as laterais como automáticas para centralizar */
+    background-color: #fff;
+}
+
+.form-add-pedido {
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.button-add {
+    display: inline-block;
+    width: 50%;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Cor de fundo padrão para o botão button */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.button-add:hover {
+    background-color: #45a049;
+}
+
+.button-back {
+    display: inline-block;
+    width: 47%;
+    padding: 10px 20px;
+    background-color: #414141;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-back:hover {
+    background-color: #504f4f;
+}
+
+.button-open-modal {
+    width: 20%;
+    background-color: #a82828;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-right: 360px;
+    border: none;
+}
+
+.button-open-modal:hover {
+    background-color: rgb(246, 121, 121);
+}
+
+.produtos-selecionados {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.valor_total {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.observacoes {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.titulo-pedido {
+    padding: 70px 0 10px 0;
+    margin-bottom: 10px;
+    background-color: #2a9ee2;
+    text-align: center;
+}
+
+.select_cliente {
+    width: 50%;
+    padding: 10px 15px;
+    margin: 10px 0 10px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.alert-success {
+    background-color: #c3eccd;
+    color: #155724;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #b60c19;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    max-width: 150px;
+    margin: 0 auto;
+}
