@@ -32,10 +32,12 @@
 
                 <div class="form-group">
                     <input type="text" name="cpf" id="cpf" placeholder="CPF" class="input-cpf-cliente" required>
+                    <div id="cpf-error" class="cpf-existe" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="E-mail" class="input-email-cliente" required>
+                    <input type="email" name="email" id="email" placeholder="E-mail" class="input-email-cliente" required>
+                    <div id="email-error" class="email-existe" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
@@ -66,6 +68,59 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            // Aplica a máscara ao campo CPF
+            $('#cpf').mask('000.000.000-00', {reverse: true});
+
+            // Configura o evento blur para verificar o CPF
+            $('#cpf').on('blur', function () {
+                // Obtém o valor do CPF sem os caracteres não numéricos
+                let cpf = $(this).cleanVal();
+                $.ajax({
+                    url: '/verifica-cpf',
+                    type: 'POST',
+                    data: { cpf: cpf, _token: '{{ csrf_token() }}' },
+                    success: function (response) {
+                        if (response.existe) {
+                            // CPF já cadastrado
+                            $('#cpf-error').text('CPF já cadastrado').show();
+                        } else {
+                            // CPF não cadastrado
+                            $('#cpf-error').text('').hide();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#email').on('blur', function () {
+                let email = $(this).val();
+                $.ajax({
+                    url: '/verifica-email',
+                    type: 'POST',
+                    data: { email: email, _token: '{{ csrf_token() }}' },
+                    success: function (response) {
+                        if (response.existe) {
+                            $('#email-error').text('E-mail já cadastrado').show();
+                        } else {
+                            $('#email-error').hide();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
 
     <script src="{{asset('js/scripts.js')}}"></script>
 @endsection

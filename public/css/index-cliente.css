@@ -109,6 +109,7 @@
 .button-delete:hover {
     background-color: #da251d;
 }
+
 .modal-cliente {
     display: none;
     position: fixed;
@@ -324,4 +325,6 @@
     cursor: pointer; /* Adicionando um cursor indicando que é clicável */
 }
 
-
+.sorting_1 td {
+    text-align: center;
+}

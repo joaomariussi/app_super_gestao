@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('#clientes').DataTable({
+        bDeferRender: true,
         language: {
             "emptyTable": "Nenhum registro encontrado",
             "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
