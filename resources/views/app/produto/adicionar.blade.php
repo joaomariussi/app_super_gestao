@@ -24,7 +24,7 @@
                 </div>
             @endif
 
-            <form class="form-add-produto" method="post" action="{{ route('app.produto.adicionar') }}">
+            <form class="form-add-produto" method="post" action="{{ route('app.produto.salvar') }}">
                 @csrf
                 <div class="form-group">
                     <input class="input-nome-produto" type="text" id="nome" name="nome"
@@ -46,22 +46,17 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="peso" placeholder="Peso" class="input-peso-produto" required>
-                </div>
-
-                <div class="form-group">
                     <input type="number" step="any" name="preco_venda" placeholder="Preço de Venda"
                            class="input-preco-venda-produto" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="estoque_minimo" placeholder="Estoque Mínimo"
-                           class="input-estoque-min-produto" required>
+                    <input type="number" step="any" name="quantidade" placeholder="Quantidade"
+                           class="input-quantidade-produto" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="estoque_maximo" placeholder="Estoque Máximo"
-                           class="input-estoque-max-produto" required>
+                    <input type="number" step="any" name="peso" placeholder="Peso" class="input-peso-produto" required>
                 </div>
 
                 <div class="form-group">

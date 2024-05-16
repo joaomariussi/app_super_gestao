@@ -23,7 +23,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <form class="form-add-fornecedor" method="post" action="{{ route('app.fornecedor.adicionar') }}">
+            <form class="form-add-fornecedor" method="post" action="{{ route('app.fornecedor.salvar') }}">
                 @csrf
                 <div class="form-group">
                     <input class="input-nome-fornecedor" type="text" id="nome" name="nome"

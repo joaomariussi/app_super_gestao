@@ -62,7 +62,7 @@
                 </div>
 
                 <button type="submit" class="button-add">Cadastrar</button>
-                <button type="button" onclick="window.location.href='{{ route('app.cliente.index') }}'"
+                <button type="button" onclick="window.location.href='{{ route('app.cliente.salvar') }}'"
                         class="button-back">Voltar
                 </button>
             </form>
@@ -123,4 +123,5 @@
     </script>
 
     <script src="{{asset('js/scripts.js')}}"></script>
+    <script src="{{asset('js/scripts-mascaras.js')}}"></script>
 @endsection
