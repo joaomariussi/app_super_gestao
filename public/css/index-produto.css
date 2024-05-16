@@ -97,9 +97,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-bottom: auto; /* Adiciona margem inferior automática */
-    max-height: 90vh; /* Define a altura máxima do modal para 90% da altura da viewport */
-    overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo do modal for muito grande */
+    margin-bottom: auto;
+    max-height: 90vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
@@ -115,6 +115,7 @@
     cursor: pointer;
     border-radius: 8px;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .button-save-modal:hover {
@@ -325,7 +326,7 @@
     color: #333;
     border: 1px solid #ccc;
 }
-.estoque-max-modal {
+.quantidade {
     width: 100%;
     padding: 10px 15px;
     margin: 10px 0 10px 0;
@@ -422,7 +423,7 @@
     font-size: 14px;
 }
 
-.estoque-max-label {
+.quantidade-label {
     font-weight: bold;
     margin-left: 10px;
     font-size: 14px;

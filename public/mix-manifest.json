@@ -1,6 +1,7 @@
 {
     "/css/adicionar-cliente.css": "/css/adicionar-cliente.css",
     "/css/adicionar-fornecedor.css": "/css/adicionar-fornecedor.css",
+    "/css/adicionar-pedido.css": "/css/adicionar-pedido.css",
     "/css/adicionar-produto.css": "/css/adicionar-produto.css",
     "/css/basico.css": "/css/basico.css",
     "/css/contato.css": "/css/contato.css",
@@ -21,6 +22,7 @@
     "/js/jquery.js": "/js/jquery.js",
     "/js/libraries/jquery/jquery.js": "/js/libraries/jquery/jquery.js",
     "/js/libraries/jquery/jquery.js.LICENSE.txt": "/js/libraries/jquery/jquery.js.LICENSE.txt",
+    "/js/scripts-mascaras.js": "/js/scripts-mascaras.js",
     "/js/scripts.js": "/js/scripts.js",
     "/js/table-clientes.js": "/js/table-clientes.js",
     "/js/table-fornecedor.js": "/js/table-fornecedor.js",

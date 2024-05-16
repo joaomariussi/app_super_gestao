@@ -161,22 +161,21 @@ select, textarea, button {
 .alert-success {
     background-color: #c3eccd;
     color: #155724;
-    padding: 5px;
     border: none;
     border-radius: 5px;
-    max-width: 300px;
+    width: 300px;
     margin: 0 auto;
+    padding: 10px;
 }
-
 
 .alert-danger {
     background-color: #f8d7da;
     color: #b60c19;
-    padding: 5px;
     border: none;
     border-radius: 5px;
-    max-width: 300px;
+    width: 300px;
     margin: 0 auto;
+    padding: 10px;
 }
 
 .cpf-existe {
