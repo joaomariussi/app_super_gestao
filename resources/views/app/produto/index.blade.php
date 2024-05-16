@@ -50,11 +50,10 @@
                                 @method('DELETE')
                                 <input type="hidden" name="produto_id" value="{{ $produto->id }}">
                                 <button type="button" class="button-edit"
-                                        onclick="openModalForEdit('{{ $produto->nome }}', '{{ $produto->id_fornecedor }}',
-                                        '{{ $produto->descricao }}', '{{ $produto->peso }}', '{{ $produto->preco_venda }}',
-                                        '{{ $produto->estoque_minimo }}', '{{ $produto->estoque_maximo }}',
-                                        '{{ $produto->unidade_id }}', '{{ $produto->largura }}', '{{ $produto->comprimento }}',
-                                        '{{ $produto->altura }}')">Editar
+                                        onclick="openModalForEdit('{{ $produto->id_fornecedor }}', '{{ $produto->unidade_id }}',
+                                        '{{ $produto->nome }}', '{{ $produto->descricao }}', '{{ $produto->peso }}',
+                                        '{{ $produto->preco_venda }}','{{ $produto->quantidade }}', '{{ $produto->largura }}',
+                                        '{{ $produto->comprimento }}', '{{ $produto->altura }}')">Editar
                                 </button>
                                 <button type="button" class="button-delete"
                                         onclick="excluirProduto('{{ $produto->id }}')">Excluir
@@ -107,13 +106,8 @@
                 <input type="text" name="preco_venda" class="preco-venda-modal" placeholder="Preço de Venda" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="estoque-min-label"> Estoque Mínimo</label>
-                <input type="text" name="estoque_minimo" class="estoque-min-modal" placeholder="Estoque Mínimo"
-                       required>
-            </div>
-            <div class="form-group">
-                <label for="nome" class="estoque-max-label"> Estoque Máximo</label>
-                <input type="text" name="estoque_maximo" class="estoque-max-modal" placeholder="Estoque Máximo"
+                <label for="quantidade" class="quantidade-label"> Quantidade</label>
+                <input type="number" step="any" name="quantidade" class="quantidade" placeholder="Quantidade"
                        required>
             </div>
             <div class="form-group">
@@ -134,8 +128,8 @@
     </div>
 
     <script>
-        function openModalForEdit(nome, id_fornecedor, descricao, peso, preco_venda, estoque_minimo,
-                                  estoque_maximo, unidade_id, largura, comprimento, altura) {
+        function openModalForEdit(id_fornecedor, unidade_id, nome, descricao, peso, preco_venda,
+                                  quantidade, largura, comprimento, altura) {
 
             // Verifica se a opção temporária já foi adicionada ao select de fornecedor
             var selectFornecedor = document.getElementsByName('id_fornecedor')[0];
@@ -162,14 +156,13 @@
             }
 
             document.getElementById('modal-produto').style.display = 'block';
-            document.getElementsByName('nome')[0].value = nome;
             document.getElementsByName('id_fornecedor')[0].value = id_fornecedor;
+            document.getElementsByName('unidade_id')[0].value = unidade_id;
+            document.getElementsByName('nome')[0].value = nome;
             document.getElementsByName('descricao')[0].value = descricao;
             document.getElementsByName('peso')[0].value = peso;
             document.getElementsByName('preco_venda')[0].value = preco_venda;
-            document.getElementsByName('estoque_minimo')[0].value = estoque_minimo;
-            document.getElementsByName('estoque_maximo')[0].value = estoque_maximo;
-            document.getElementsByName('unidade_id')[0].value = unidade_id;
+            document.getElementsByName('quantidade')[0].value = quantidade;
             document.getElementsByName('largura')[0].value = largura;
             document.getElementsByName('comprimento')[0].value = comprimento;
             document.getElementsByName('altura')[0].value = altura;
@@ -197,14 +190,13 @@
 
         function saveChanges() {
             var id = document.getElementsByName('produto_id')[0].value;
-            var nome = document.getElementsByName('nome')[0].value;
             var id_fornecedor = document.getElementsByName('id_fornecedor')[0].value;
+            var unidade_id = document.getElementsByName('unidade_id')[0].value;
+            var nome = document.getElementsByName('nome')[0].value;
             var descricao = document.getElementsByName('descricao')[0].value;
             var peso = document.getElementsByName('peso')[0].value;
             var preco_venda = document.getElementsByName('preco_venda')[0].value;
-            var estoque_minimo = document.getElementsByName('estoque_minimo')[0].value;
-            var estoque_maximo = document.getElementsByName('estoque_maximo')[0].value;
-            var unidade_id = document.getElementsByName('unidade_id')[0].value;
+            var quantidade = document.getElementsByName('quantidade')[0].value;
             var largura = document.getElementsByName('largura')[0].value;
             var comprimento = document.getElementsByName('comprimento')[0].value;
             var altura = document.getElementsByName('altura')[0].value;
@@ -214,14 +206,13 @@
                 url: '/produto/editar/' + id,
                 data: {
                     id: id,
-                    nome: nome,
                     id_fornecedor: id_fornecedor,
+                    unidade_id: unidade_id,
+                    nome: nome,
                     descricao: descricao,
                     peso: peso,
                     preco_venda: preco_venda,
-                    estoque_minimo: estoque_minimo,
-                    estoque_maximo: estoque_maximo,
-                    unidade_id: unidade_id,
+                    quantidade: quantidade,
                     largura: largura,
                     comprimento: comprimento,
                     altura: altura,
@@ -240,7 +231,6 @@
                 }
             });
         }
-
 
         function excluirProduto(id) {
             if (confirm('Deseja realmente excluir este produto?')) {

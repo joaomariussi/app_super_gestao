@@ -18,7 +18,7 @@
         <div class="menu-fornecedor">
             <div class="button-wrapper">
                 <button type="submit" class="button-add"
-                        onclick="window.location.href = '{{ route('app.fornecedor.adicionar') }}'">Novo Fornecedor
+                        onclick="window.location.href = '{{ route('app.fornecedor.salvar') }}'">Novo Fornecedor
                 </button>
 
                 <div class="button-wrapper">

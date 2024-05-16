@@ -8,6 +8,6 @@ class ProdutoModel extends Model
 {
     protected $table = 'produtos';
 
-    protected $fillable = ['id_fornecedor', 'nome', 'descricao', 'peso', 'preco_venda', 'estoque_minimo', 'estoque_maximo',
-        'largura', 'comprimento', 'altura', 'unidade_id'];
+    protected $fillable = ['id_fornecedor', 'nome', 'descricao', 'peso', 'preco_venda',
+        'largura', 'comprimento', 'altura', 'quantidade', 'unidade_id'];
 }
