@@ -17,28 +17,46 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
 });
 
-Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
-Route::get('/fornecedor/search', [FornecedorController::class, 'search'])->name('app.fornecedor.search');
-Route::any('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
-Route::post('/fornecedor/editar/{id}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
-Route::post('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
+Route::group(['prefix' => '/fornecedor'], function () {
+    Route::get('/', [FornecedorController::class, 'index'])->name('app.fornecedor');
+    Route::get('/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+    Route::post('/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.salvar');
+    Route::get('/editar/{id}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
+    Route::post('/editar/{id}', [FornecedorController::class, 'atualizar'])->name('app.fornecedor.atualizar');
+    Route::post('/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
+});
 
-Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
-Route::any('/produto/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.adicionar');
-Route::post('/produto/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
-Route::post('/produto/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
-Route::get('/produto/visualizar', [ProdutoController::class, 'visualizar'])->name('app.produto.visualizar');
+Route::group(['prefix' => '/produto'], function () {
+    Route::get('/', [ProdutoController::class, 'index'])->name('app.produto');
+    Route::get('/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.adicionar');
+    Route::post('/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.salvar');
+    Route::get('/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
+    Route::post('/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
+    Route::post('/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
+});
 
-Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente.index');
-Route::any('/cliente/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.adicionar');
-Route::post('/cliente/editar/{id}', [ClienteController::class, 'editar'])->name('app.cliente.editar');
-Route::post('/cliente/excluir/{id}', [ClienteController::class, 'excluir'])->name('app.cliente.excluir');
+Route::get('produtos', [PedidoController::class, 'buscaProdutos'])->name('app.pedido.produtos');
+
+Route::group(['prefix' => '/cliente'], function () {
+    Route::get('/', [ClienteController::class, 'index'])->name('app.cliente');
+    Route::get('/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.adicionar');
+    Route::post('/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.salvar');
+    Route::get('/editar/{id}', [ClienteController::class, 'editar'])->name('app.cliente.editar');
+    Route::post('/editar/{id}', [ClienteController::class, 'atualizar'])->name('app.cliente.atualizar');
+    Route::post('/excluir/{id}', [ClienteController::class, 'excluir'])->name('app.cliente.excluir');
+});
 
 Route::post('/verifica-cpf', [ClienteController::class, 'verificaCpf'])->name('app.cliente.verifica-cpf');
 Route::post('/verifica-email', [ClienteController::class, 'verificaEmail'])->name('app.cliente.verifica-email');
 
-Route::get('/pedido', [PedidoController::class, 'index'])->name('app.pedido');
-Route::get('/pedido/adicionar', [PedidoController::class, 'adicionar'])->name('app.pedido.adicionar');
+Route::group(['prefix' => '/pedido'], function () {
+    Route::get('/', [PedidoController::class, 'index'])->name('app.pedido');
+    Route::get('/adicionar', [PedidoController::class, 'adicionar'])->name('app.pedido.adicionar');
+    Route::post('/adicionar', [PedidoController::class, 'adicionar'])->name('app.pedido.salvar');
+    Route::get('/editar/{id}', [PedidoController::class, 'editar'])->name('app.pedido.editar');
+    Route::post('/editar/{id}', [PedidoController::class, 'atualizar'])->name('app.pedido.atualizar');
+    Route::post('/excluir/{id}', [PedidoController::class, 'excluir'])->name('app.pedido.excluir');
+});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
