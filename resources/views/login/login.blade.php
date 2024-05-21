@@ -9,47 +9,58 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
-<div class="login-container">
-    <h1 class="login-title">
-        <i class="fas fa-user-circle"></i>
-    </h1>
+<div class="container">
+    <div class="banner">
 
-    @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-    @endif
+    </div>
+    <div class="login-container">
+        <h1 class="login-title">LOGIN</h1>
 
-    @if(auth()->check())
-        <p>Está logado - <a href="{{ route('logout') }}">Sair</a></p>
-    @else
-        @error('error')
-        <div class="alert alert-danger">
-            {{ $message }}
-        </div>
-        @enderror
-
-        <form action="{{ route('login') }}" method="post" class="login-form">
-            @csrf
-            <div class="form-group">
-                <input class="form-input" type="text" name="email" placeholder="E-mail" value="teste@gmail.com" required>
-                @error('email')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
             </div>
+        @endif
 
-            <div class="form-group">
-                <input class="form-input" type="password" name="password" value="123" placeholder="Senha" required>
-                @error('password')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+        @if(auth()->check())
+            <p>Está logado - <a href="{{ route('logout') }}">Sair</a></p>
+        @else
+            @error('error')
+            <div class="alert alert-danger">
+                {{ $message }}
             </div>
+            @enderror
 
-            <div class="form-group">
-                <button class="btn btn-primary btn-lg">Login</button>
-            </div>
-        </form>
-    @endif
+            <form action="{{ route('login') }}" method="post" class="login-form">
+                @csrf
+                <div class="form-group">
+                    <label for="email">Usuário</label>
+                    <input class="input-email" type="text" name="email" id="email"
+                           placeholder="Usuário" value="teste@gmail.com" required>
+                    @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input class="input-senha" type="password" name="password" id="password"
+                           value="123" placeholder="Senha" required>
+                    @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <a href="#" class="forgot-password">Recuperar senha?</a>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg">LOGIN</button>
+                </div>
+            </form>
+        @endif
+    </div>
 </div>
 </body>
 </html>

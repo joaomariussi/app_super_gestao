@@ -7,6 +7,7 @@
         <language minSize="841" name="JavaScript" />
       </Languages>
     </inspection_tool>
+    <inspection_tool class="JSUnresolvedReference" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpMultipleClassDeclarationsInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
   </profile>
 </component>

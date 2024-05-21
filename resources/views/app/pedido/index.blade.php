@@ -23,38 +23,32 @@
                 </div>
             </div>
 
-            <table id="pedidos" class="display" style="width:100%">
+            <table id="pedidos" class="display">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Nome do Cliente</th>
-                    <th>Código do Produto</th>
+                    <th>Cód Produto</th>
                     <th>Nome do Produto</th>
                     <th>Quantidade</th>
-                    <th>Valor Unitário</th>
-                    <th>Valor Total</th>
+                    <th>Valor Un</th>
+                    <th>Opções</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse ($pedidos as $pedido)
+                @forelse ($pedido_produtos as $pedido_produto)
                     <tr>
-                        <td>{{ $pedido->id }}</td>
-                        <td>{{ $pedido->id_cliente }}</td>
-                        <td>{{ $pedido->id_produto }}</td>
-                        <td>{{ $pedido->nome_produto }}</td>
-                        <td>{{ $pedido->quantidade }}</td>
-                        <td>{{ $pedido->valor_produto }}</td>
-                        <td>{{ $pedido->valor_total }}</td>
+                        <td>{{ $pedido_produto->pedido_id }}</td>
+                        <td>{{ $pedido_produto->cliente->nome }}</td>
+                        <td>{{ $pedido_produto->produto_id }}</td>
+                        <td>{{ $pedido_produto->nome }}</td>
+                        <td>{{ $pedido_produto->quantidade }}</td>
+                        <td>{{ $pedido_produto->valor }}</td>
                         <td>
-                            <form class="form-group" id="form-editar-cliente-{{ $pedido->id }}"
-                                  action="{{ route('app.cliente.editar', ['id' => $pedido->id]) }}"
-                                  method="post">
+                            <form class="form-group" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="cliente_id" value="{{ $pedido->id }}">
-                                <button type="button" class="button-delete"
-                                        onclick="excluirCliente('{{ $pedido->id }}')">Excluir
-                                </button>
+                                <button type="button" class="button-delete" onclick="">Excluir</button>
                             </form>
                         </td>
                     </tr>
@@ -64,45 +58,6 @@
             </table>
         </div>
     </div>
-
-{{--    <script>--}}
-
-{{--        function reloadDataTable() {--}}
-{{--            if ($.fn.DataTable.isDataTable('#clientes')) {--}}
-{{--                let table = $('#clientes').DataTable();--}}
-{{--                table.clear().draw(); // Limpa a tabela sem destruí-la--}}
-{{--                if (table.data().count() > 0) {--}}
-{{--                    table.destroy(); // Destroi apenas se houver dados--}}
-{{--                }--}}
-{{--            }--}}
-{{--            // Recarrega a página após 1 segundo--}}
-{{--            setTimeout(function () {--}}
-{{--                location.reload();--}}
-{{--            }, 1000);--}}
-{{--        }--}}
-
-{{--        function excluirCliente(id) {--}}
-{{--            if (confirm('Deseja realmente excluir este cliente?')) {--}}
-{{--                $.ajax({--}}
-{{--                    type: 'POST',--}}
-{{--                    url: '/cliente/excluir/' + id,--}}
-{{--                    data: {--}}
-{{--                        id: id,--}}
-{{--                        _token: '{{ csrf_token() }}'--}}
-{{--                    },--}}
-{{--                    dataType: 'json', // Define o tipo de retorno--}}
-{{--                    success: function (response) {--}}
-{{--                        console.log(response.message);--}}
-{{--                        // Destroi a instância atual do DataTables--}}
-{{--                        reloadDataTable();--}}
-{{--                    },--}}
-{{--                    error: function (xhr, status, error) {--}}
-{{--                        console.error(error);--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            }--}}
-{{--        }--}}
-{{--    </script>--}}
 
     <script src="{{ asset('js/table-pedidos.js') }}"></script>
 @endsection

@@ -17,7 +17,7 @@
 
         <div class="menu-cliente">
             <div class="button-wrapper">
-                <a href="{{ route('app.cliente.adicionar') }}" class="button-add">Novo Cliente</a>
+                <a href="{{ route('app.cliente.salvar') }}" class="button-add">Novo Cliente</a>
 
                 <div class="button-wrapper">
                     <a href="{{ route('site.principal') }}" class="button-back">Voltar</a>
@@ -42,11 +42,13 @@
                 @forelse ($clientes as $cliente)
                     <tr>
                         <td>{{ $cliente->nome }}</td>
-                        <td>{{ $cliente->cpf }}</td>
+                        <td>{{ substr($cliente->cpf, 0, 3) }}.{{ substr($cliente->cpf, 3, 3) }}.
+                            {{ substr($cliente->cpf, 6, 3) }}-{{ substr($cliente->cpf, -2) }}</td>
                         <td>{{ $cliente->email }}</td>
-                        <td>{{ $cliente->telefone }}</td>
+                        <td>{{ substr($cliente->telefone, 0, 2) }} {{ substr($cliente->telefone, 2, 5) }}
+                            -{{ substr($cliente->telefone, -4) }}</td>
                         <td>{{ $cliente->endereco }}</td>
-                        <td>{{ $cliente->cep }}</td>
+                        <td>{{ substr($cliente->cep, 0, 5) }}-{{ substr($cliente->cep, -3) }}</td>
                         <td>{{ $cliente->estado }}</td>
                         <td>{{ $cliente->cidade }}</td>
                         <td>
@@ -64,6 +66,7 @@
                                 <button type="button" class="button-delete"
                                         onclick="excluirCliente('{{ $cliente->id }}')">Excluir
                                 </button>
+                            </form>
                         </td>
                     </tr>
                 @empty
@@ -123,20 +126,6 @@
     </div>
 
     <script>
-
-        function reloadDataTable() {
-            if ($.fn.DataTable.isDataTable('#clientes')) {
-                let table = $('#clientes').DataTable();
-                table.clear().draw(); // Limpa a tabela sem destruí-la
-                if (table.data().count() > 0) {
-                    table.destroy(); // Destroi apenas se houver dados
-                }
-            }
-            // Recarrega a página após 1 segundo
-            setTimeout(function () {
-                location.reload();
-            }, 1000);
-        }
 
         function openModalForEdit(nome, cpf, email, telefone, endereco, cep, estado, cidade) {
             document.getElementById('modal-cliente').style.display = 'block';
@@ -225,4 +214,5 @@
     </script>
 
     <script src="{{ asset('js/table-clientes.js') }}"></script>
+    <script src="{{asset('js/scripts-mascaras.js')}}"></script>
 @endsection

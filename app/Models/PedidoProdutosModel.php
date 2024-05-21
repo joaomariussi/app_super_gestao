@@ -30,6 +30,6 @@ class PedidoProdutosModel extends Model
 
     public function cliente(): BelongsTo
     {
-        return $this->belongsTo(ClienteModel::class, 'cliente_id', 'cliente_id');
+        return $this->belongsTo(ClienteModel::class, 'cliente_id', 'id');
     }
 }

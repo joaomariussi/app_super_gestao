@@ -16,11 +16,11 @@ class PedidoController extends Controller
     public function index()
     {
         try {
-            $pedidos = PedidoModel::all();
-            return view('app.pedido.index', compact('pedidos'));
+            $pedido_produtos = PedidoProdutosModel::with('cliente')->get();
         } catch (Exception $e) {
-            return view('app.pedido.index', ['message' => $e->getMessage()]);
+            return redirect()->back()->with('error', $e->getMessage());
         }
+        return view('app.pedido.index', compact('pedido_produtos'));
     }
 
     public function adicionar(Request $request)
