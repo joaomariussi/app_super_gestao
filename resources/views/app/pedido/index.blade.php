@@ -31,7 +31,7 @@
                     <th>Cód Produto</th>
                     <th>Nome do Produto</th>
                     <th>Quantidade</th>
-                    <th>Valor Un</th>
+                    <th>Valor R$</th>
                     <th>Opções</th>
                 </tr>
                 </thead>
@@ -42,13 +42,16 @@
                         <td>{{ $pedido_produto->cliente->nome }}</td>
                         <td>{{ $pedido_produto->produto_id }}</td>
                         <td>{{ $pedido_produto->nome }}</td>
-                        <td>{{ $pedido_produto->quantidade }}</td>
-                        <td>{{ $pedido_produto->valor }}</td>
+                        <td>{{ $pedido_produto->quantidade }} un</td>
+                        <td>R$ {{ number_format($pedido_produto->valor, 2, ',', '.') }}</td>
                         <td>
                             <form class="form-group" method="post">
                                 @csrf
+                                <button type="button" class="button-visualizar">Visualizar</button>
                                 @method('DELETE')
-                                <button type="button" class="button-delete" onclick="">Excluir</button>
+                                <button type="button" class="button-delete"
+                                        onclick="excluirPedido('{{ $pedido_produto->pedido_id }}')">Excluir
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -58,6 +61,31 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function excluirPedido(id) {
+            if (confirm('Deseja realmente excluir este pedido?')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/pedido/excluir/' + id,
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response.message);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+        }
+    </script>
 
     <script src="{{ asset('js/table-pedidos.js') }}"></script>
 @endsection

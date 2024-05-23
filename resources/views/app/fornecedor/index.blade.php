@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @extends('app.layouts.basic')
 
 <title>Gerenciamento de Fornecedores</title>
@@ -36,6 +37,7 @@
                     <th scope="col">Site</th>
                     <th scope="col">UF</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Última atualização</th>
                     <th scope="col">Opções</th>
                 </tr>
                 </thead>
@@ -47,6 +49,7 @@
                         <td>{{ $fornecedor->site }}</td>
                         <td>{{ $fornecedor->uf }}</td>
                         <td>{{ $fornecedor->email }}</td>
+                        <td>{{ Carbon::parse($fornecedor->updated_at)->format('d/m/Y H:i:s') }}</td>
                         <td>
                             <form class="form-group" id="form-editar-fornecedor-{{ $fornecedor->id }}"
                                   action="{{ route('app.fornecedor.editar', ['id' => $fornecedor->id]) }}"

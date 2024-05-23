@@ -55,7 +55,7 @@ Route::group(['prefix' => '/pedido'], function () {
     Route::post('/adicionar', [PedidoController::class, 'adicionar'])->name('app.pedido.salvar');
     Route::get('/editar/{id}', [PedidoController::class, 'editar'])->name('app.pedido.editar');
     Route::post('/editar/{id}', [PedidoController::class, 'atualizar'])->name('app.pedido.atualizar');
-    Route::post('/excluir/{id}', [PedidoController::class, 'excluir'])->name('app.pedido.excluir');
+    Route::delete('/excluir/{id}', [PedidoController::class, 'excluir'])->name('app.pedido.excluir');
 });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');

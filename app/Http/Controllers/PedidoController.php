@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClienteModel;
+use App\Models\FornecedorModel;
 use App\Models\PedidoModel;
 use App\Models\PedidoProdutosModel;
 use App\Models\ProdutoModel;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -17,10 +19,12 @@ class PedidoController extends Controller
     {
         try {
             $pedido_produtos = PedidoProdutosModel::with('cliente')->get();
+
+            $pedido = PedidoModel::all();
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
-        return view('app.pedido.index', compact('pedido_produtos'));
+        return view('app.pedido.index', compact('pedido_produtos', 'pedido'));
     }
 
     public function adicionar(Request $request)
@@ -76,6 +80,24 @@ class PedidoController extends Controller
         }
     }
 
+    public function excluir($id): JsonResponse
+    {
+        try {
+            $pedido = PedidoModel::find($id);
+
+            if ($pedido) {
+                // Excluir registros na tabela pedido_produtos associados ao pedido
+                PedidoProdutosModel::where('pedido_id', $id)->delete();
+                // Agora, excluir o pedido
+                $pedido->delete();
+                return response()->json(['message' => 'Pedido excluído com sucesso!', 'pedido' => $pedido]);
+            } else {
+                return response()->json(['error' => 'Pedido não encontrado!'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 
     public function buscaProdutos(Request $request): JsonResponse
     {

@@ -30,7 +30,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome do Produto</th>
                     <th scope="col">Descrição</th>
-                    <th scope="col">Peso</th>
+                    <th scope="col">Peso (g)</th>
                     <th scope="col">Preço de Venda</th>
                     <th scope="col">Opções</th>
                 </tr>
@@ -42,7 +42,7 @@
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->descricao }}</td>
                         <td>{{ $produto->peso }}</td>
-                        <td>{{ $produto->preco_venda }}</td>
+                        <td>R$ {{ number_format($produto->preco_venda, 2, ',', '.') }}</td>
                         <td>
                             <form class="form-group" id="form-editar-fornecedor-{{ $produto->id }}"
                                   action="{{ route('app.produto.editar', ['id' => $produto->id]) }}" method="post">

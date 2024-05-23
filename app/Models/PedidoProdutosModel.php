@@ -20,12 +20,12 @@ class PedidoProdutosModel extends Model
 
     public function pedido(): BelongsTo
     {
-        return $this->belongsTo(PedidoModel::class, 'pedido_id', 'pedido_id');
+        return $this->belongsTo(PedidoModel::class, 'pedido_id', 'id');
     }
 
     public function produto(): BelongsTo
     {
-        return $this->belongsTo(ProdutoModel::class, 'produto_id', 'produto_id');
+        return $this->belongsTo(ProdutoModel::class, 'produto_id', 'id');
     }
 
     public function cliente(): BelongsTo
