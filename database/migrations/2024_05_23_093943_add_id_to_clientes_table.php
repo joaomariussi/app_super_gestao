@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColunaValorTotalTablePedidoProdutos extends Migration
+class AddIdToClientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColunaValorTotalTablePedidoProdutos extends Migration
      */
     public function up()
     {
-        Schema::table('pedido_produtos', function (Blueprint $table) {
-            $table->decimal('valor_total', 10, 2)->after('valor_produto')->default(0);
+        Schema::table('clientes', function (Blueprint $table) {
+            $table->id()->first(); // Adiciona a coluna id como a primeira coluna
         });
     }
 
@@ -25,8 +25,8 @@ class AddColunaValorTotalTablePedidoProdutos extends Migration
      */
     public function down()
     {
-        Schema::table('pedido_produtos', function (Blueprint $table) {
-            $table->decimal('valor_total', 10, 2)->after('valor_produto')->default(0);
+        Schema::table('clientes', function (Blueprint $table) {
+            $table->dropColumn('id');
         });
     }
 }

@@ -13,14 +13,26 @@ class CreateProdutosTable extends Migration
      */
     public function up()
     {
-        Schema::create('produto', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100);
             $table->text('descricao');
-            $table->float('peso', 8, 2);
+
+            // Adicionando a coluna unidade_id e definindo a chave estrangeira
+            $table->unsignedBigInteger('unidade_id');
+            $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('cascade');
+
+            // Adicionando a coluna id_fornecedor e definindo a chave estrangeira
+            $table->unsignedBigInteger('id_fornecedor');
+            $table->foreign('id_fornecedor')->references('id')->on('fornecedores')->onDelete('cascade');
+
             $table->float('preco_venda', 8, 2)->default(0.01);
-            $table->integer('estoque_minimo')->default(1);
-            $table->integer('estoque_maximo')->default(1);
+            $table->integer('quantidade');
+            $table->float('peso', 8, 2);
+            $table->float('largura')->nullable();
+            $table->float('comprimento')->nullable();
+            $table->float('altura')->nullable();
+
             $table->timestamps();
         });
     }

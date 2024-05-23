@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddClienteIdFromPedidoProdutos extends Migration
+class CreatePedidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class AddClienteIdFromPedidoProdutos extends Migration
      */
     public function up()
     {
-        Schema::table('pedido_produtos', function (Blueprint $table) {
-            $table->unsignedBigInteger('cliente_id')->after('produto_id');
+        Schema::create('pedidos', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('cliente_id');
+            $table->decimal('valor_total', 10, 2);
+            $table->text('observacoes')->nullable();
+
+            $table->timestamps();
+
             $table->foreign('cliente_id')->references('id')->on('clientes');
         });
     }
@@ -26,8 +32,6 @@ class AddClienteIdFromPedidoProdutos extends Migration
      */
     public function down()
     {
-        Schema::table('pedido_produtos', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('pedidos');
     }
 }

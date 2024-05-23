@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenamePedidoProdutosTableToPedidoTable extends Migration
+class CreateUnidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class RenamePedidoProdutosTableToPedidoTable extends Migration
      */
     public function up()
     {
-        Schema::rename('pedido_produtos', 'pedidos');
+        Schema::create('unidades', function (Blueprint $table) {
+            $table->id();
+            $table->string('unidade', 2);
+            $table->string('descricao', 30);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class RenamePedidoProdutosTableToPedidoTable extends Migration
      */
     public function down()
     {
-        Schema::rename('pedido_produtos', 'pedidos');
+        Schema::dropIfExists('unidades');
     }
 }
