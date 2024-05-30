@@ -48,12 +48,16 @@ select, textarea, button {
     background-color: #45a049;
 }
 
+.button-back:hover {
+    background-color: #504f4f;
+}
+
 .button-back {
-    display: inline-block;
-    width: 47%;
-    padding: 10px 20px;
     background-color: #414141;
     color: white;
+    padding: 10px 20px;
+    width: 47%;
+    display: inline-block;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -61,10 +65,6 @@ select, textarea, button {
     transition-duration: 0.4s;
     cursor: pointer;
     margin-top: 10px;
-}
-
-.button-back:hover {
-    background-color: #504f4f;
 }
 
 .button-open-modal {
@@ -101,6 +101,46 @@ select, textarea, button {
 .produtos-selecionados {
     font-size: 15px;
 }
+
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-produtos th, .tabela-produtos td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabela-produtos th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.tabela-produtos tbody tr {
+    margin-bottom: 10px; /* Espaço entre as linhas */
+}
+
+.button-remover-produto {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.button-remover-produto:hover {
+    background-color: #d32f2f; /* Darker red background on hover */
+}
+
 
 .valor_total {
     width: 50%;

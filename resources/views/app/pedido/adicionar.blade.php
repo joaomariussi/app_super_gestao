@@ -4,8 +4,15 @@
 
 @section('titulo', 'Criar Pedido')
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- jQuery Mask Money -->
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<!-- Select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 @section('conteudo')
     <div class="conteudo-pagina">
@@ -34,8 +41,20 @@
                 </div>
 
                 <!-- Div para exibir os produtos selecionados -->
-                <div id="produtosSelecionados" class="produtos-selecionados">
-                    <!-- Os produtos selecionados serão adicionados aqui -->
+                <div id="produtosSelecionados" class="produtos-selecionados" style="display: none;">
+                    <table id="tabelaProdutos" class="tabela-produtos">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Preço Total</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Os produtos serão adicionados aqui -->
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="form-group">
@@ -48,13 +67,12 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="observacoes" placeholder="Observações"
-                           class="observacoes" required>
+                    <input type="text" name="observacoes" placeholder="Observações" class="observacoes" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="valor_total" placeholder="Valor Total"
-                           class="valor_total" id="valor_total" required>
+                    <input type="text" step="any" name="valor_total" placeholder="R$ 0,00"
+                           required class="valor_total" id="valor_total">
                 </div>
 
                 <div class="button-container">
@@ -84,6 +102,14 @@
         function closeModal() {
             document.getElementById('myModal').style.display = 'none';
         }
+
+        $('#valor_total').maskMoney({
+            prefix: 'R$ ',
+            allowNegative: false,
+            thousands: '.',
+            decimal: ',',
+            affixesStay: true
+        });
     </script>
 
     <script src="{{asset('js/scripts.js')}}"></script>

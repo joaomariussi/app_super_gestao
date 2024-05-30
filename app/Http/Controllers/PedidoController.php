@@ -8,6 +8,9 @@ use App\Models\PedidoModel;
 use App\Models\PedidoProdutosModel;
 use App\Models\ProdutoModel;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,19 +18,24 @@ use Throwable;
 
 class PedidoController extends Controller
 {
-    public function index()
+    public function index(): Factory|View|RedirectResponse|Application
     {
         try {
-            $pedido_produtos = PedidoProdutosModel::with('cliente')->get();
+            // Carregar todos os pedidos com os produtos relacionados
+            $pedidos = PedidoModel::with(['cliente', 'produtos.produto'])->get();
 
-            $pedido = PedidoModel::all();
+            // Calcular quantidade total de produtos e valor total por pedido
+            foreach ($pedidos as $pedido) {
+                $pedido->quantidade_total = $pedido->produtos->sum('quantidade');
+            }
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
-        return view('app.pedido.index', compact('pedido_produtos', 'pedido'));
+
+        return view('app.pedido.index', compact('pedidos'));
     }
 
-    public function adicionar(Request $request)
+    public function adicionar(Request $request): Factory|View|Application|RedirectResponse
     {
         try {
 
@@ -43,7 +51,7 @@ class PedidoController extends Controller
                 // Criar o pedido sem salvar
                 $pedido = new PedidoModel();
                 $pedido->cliente_id = $dados_pedido['cliente_id'] ?? null;
-                $pedido->valor_total = $dados_pedido['valor_total'] ?? null;
+                $pedido->valor_total = str_replace('R$ ', '', $dados_pedido['valor_total'] ?? null);
                 $pedido->observacoes = $dados_pedido['observacoes'] ?? null;
 
                 // Inicializa um array para armazenar os produtos
@@ -112,6 +120,23 @@ class PedidoController extends Controller
             return response()->json($produtos);
         } catch (Throwable $e) {
             return response()->json(['error' => 'Erro ao buscar produtos: ' . $e->getMessage()]);
+        }
+    }
+
+    public function visualizar($id): Factory|View|RedirectResponse|Application
+    {
+        try {
+            $pedido = PedidoModel::with('cliente')->find($id);
+
+
+            if ($pedido) {
+                $pedido_produtos = PedidoProdutosModel::where('pedido_id', $id)->with('produto')->get();
+                return view('app.pedido.visualizar', compact('pedido', 'pedido_produtos'));
+            } else {
+                return redirect()->back()->with('error', 'Pedido não encontrado!');
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 

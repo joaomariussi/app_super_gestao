@@ -16,42 +16,37 @@
 
         <div class="menu-pedido">
             <div class="button-wrapper">
-                <a href="{{route('app.pedido.adicionar')}}" class="button-add">Novo Pedido</a>
-
-                <div class="button-wrapper">
-                    <a href="{{ route('site.principal') }}" class="button-back">Voltar</a>
-                </div>
+                <a href="{{ route('app.pedido.adicionar') }}" class="button-add">Novo Pedido</a>
+                <a href="{{ route('site.principal') }}" class="button-back">Voltar</a>
             </div>
 
             <table id="pedidos" class="display">
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID Pedido</th>
                     <th>Nome do Cliente</th>
-                    <th>Cód Produto</th>
-                    <th>Nome do Produto</th>
-                    <th>Quantidade</th>
-                    <th>Valor R$</th>
+                    <th>Qtd Total</th>
+                    <th>Valor Total R$</th>
+                    <th>Data do Pedido</th>
+                    <th>Última Atualização</th>
                     <th>Opções</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse ($pedido_produtos as $pedido_produto)
+                @forelse ($pedidos as $pedido)
                     <tr>
-                        <td>{{ $pedido_produto->pedido_id }}</td>
-                        <td>{{ $pedido_produto->cliente->nome }}</td>
-                        <td>{{ $pedido_produto->produto_id }}</td>
-                        <td>{{ $pedido_produto->nome }}</td>
-                        <td>{{ $pedido_produto->quantidade }} un</td>
-                        <td>R$ {{ number_format($pedido_produto->valor, 2, ',', '.') }}</td>
+                        <td>{{ $pedido->id }}</td>
+                        <td>{{ $pedido->cliente->nome }}</td>
+                        <td>{{ $pedido->quantidade_total }} un</td>
+                        <td>R$ {{ number_format($pedido->valor_total, 2, ',', '.') }}</td>
+                        <td>{{ date('d/m/Y H:i', strtotime($pedido->created_at)) }}</td>
+                        <td>{{ date('d/m/Y H:i', strtotime($pedido->updated_at)) }}</td>
                         <td>
-                            <form class="form-group" method="post">
+                            <form class="form-group" method="post" action="{{ route('app.pedido.excluir', $pedido->id) }}">
                                 @csrf
-                                <button type="button" class="button-visualizar">Visualizar</button>
                                 @method('DELETE')
-                                <button type="button" class="button-delete"
-                                        onclick="excluirPedido('{{ $pedido_produto->pedido_id }}')">Excluir
-                                </button>
+                                <a href="{{ route('app.pedido.visualizar', $pedido->id) }}" class="button-view">Visualizar</a>
+                                <button type="button" class="button-delete" onclick="excluirPedido('{{ $pedido->id }}')">Excluir</button>
                             </form>
                         </td>
                     </tr>

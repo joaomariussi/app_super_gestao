@@ -1,69 +1,60 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Armazenar os produtos selecionados
     var produtosSelecionados = [];
 
-    // Função para fechar o modal
     function closeModal() {
         document.getElementById('myModal').style.display = 'none';
     }
 
-    // Função para adicionar o produto selecionado ao formulário
     function addProdutoToForm(produto) {
-        // Cria um elemento de input oculto para cada atributo do produto
         var form = document.querySelector('.form-add-pedido');
 
         if (form) {
             var inputId = document.createElement('input');
             inputId.type = 'hidden';
-            inputId.name = 'produtos[' + produto.id + '][id_produto]'; // Nome do input usando notação de array
+            inputId.name = 'produtos[' + produto.id + '][id_produto]';
             inputId.value = produto.id;
             form.appendChild(inputId);
 
             var inputNome = document.createElement('input');
             inputNome.type = 'hidden';
-            inputNome.name = 'produtos[' + produto.id + '][nome_produto]'; // Nome do input usando notação de array
-            inputNome.value = produto.nome; // Adiciona o nome do produto
+            inputNome.name = 'produtos[' + produto.id + '][nome_produto]';
+            inputNome.value = produto.nome;
             form.appendChild(inputNome);
 
             var inputValorProduto = document.createElement('input');
             inputValorProduto.type = 'hidden';
-            inputValorProduto.name = 'produtos[' + produto.id + '][valor]'; // Nome do input usando notação de array
-            inputValorProduto.value = produto.preco_venda; // Aqui estou assumindo que 'preco_venda' é o atributo que armazena o valor do produto
+            inputValorProduto.name = 'produtos[' + produto.id + '][valor]';
+            inputValorProduto.value = produto.preco_venda;
             form.appendChild(inputValorProduto);
 
             var inputQuantidade = document.createElement('input');
             inputQuantidade.type = 'hidden';
-            inputQuantidade.name = 'produtos[' + produto.id + '][quantidade]'; // Nome do input usando notação de array
+            inputQuantidade.name = 'produtos[' + produto.id + '][quantidade]';
             inputQuantidade.value = produto.quantidade;
             form.appendChild(inputQuantidade);
         } else {
             console.error("Formulário não encontrado");
         }
 
-        // Atualizar o valor total na view após adicionar o produto ao formulário
         updateValorTotal();
     }
 
-    // Função para abrir o modal
     function openModal() {
         var modal = document.getElementById('myModal');
         modal.style.display = 'block';
 
-        // Faz uma solicitação AJAX para obter os produtos
         fetch('/produtos')
             .then(response => response.json())
             .then(data => {
-                // Limpar o select
                 var select = document.getElementById('produtos-list');
                 select.innerHTML = '';
 
-                // Preenche o select com os produtos retornados
                 data.forEach(function (produto) {
                     var option = document.createElement('option');
-                    option.text = produto.nome; // Supondo que 'nome' seja o campo que contém o nome do produto
-                    option.value = produto.id; // Supondo que 'id' seja o campo que contém o ID do produto
-                    option.dataset.preco_venda = produto.preco_venda; // Adiciona o preço como um atributo personalizado
+                    option.text = produto.nome;
+                    option.value = produto.id;
+                    option.dataset.preco_venda = produto.preco_venda;
                     select.appendChild(option);
                 });
             })
@@ -72,75 +63,57 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Função para atualizar a lista de produtos na view
     function updateProdutoList() {
-        // Limpar a lista de produtos na view
         var produtosSelecionadosDiv = document.getElementById('produtosSelecionados');
-        produtosSelecionadosDiv.innerHTML = '';
+        var tabelaProdutos = document.getElementById('tabelaProdutos').querySelector('tbody');
+        tabelaProdutos.innerHTML = '';
 
-        // Verificar se há produtos selecionados
         if (produtosSelecionados.length === 0) {
-            // Se não houver produtos, exibir mensagem
-            var mensagemDiv = document.createElement('div');
-            mensagemDiv.textContent = 'Nenhum produto selecionado';
-            produtosSelecionadosDiv.appendChild(mensagemDiv);
+            produtosSelecionadosDiv.style.display = 'none';
         } else {
-            // Iterar sobre os produtos selecionados e adicioná-los à lista na view
-            produtosSelecionados.forEach(function (produto, index) {
-                var produtoDiv = document.createElement('div');
-                produtoDiv.textContent = produto.nome;
+            produtosSelecionadosDiv.style.display = 'block';
+            produtosSelecionados.forEach(function (produto) {
+                var produtoRow = document.createElement('tr');
 
-                // Verificar se é o primeiro produto ou não
-                if (index > 0) {
-                    produtoDiv.style.marginTop = '5px'; // Adiciona o espaçamento apenas para os produtos além do primeiro
-                }
+                var nomeTd = document.createElement('td');
+                nomeTd.textContent = produto.nome;
+                produtoRow.appendChild(nomeTd);
 
-                // Verificar se a quantidade foi selecionada
-                if (produto.quantidade > 0) {
-                    // Calcular o preço total do produto (preço x quantidade)
-                    var precoTotal = produto.preco_venda * produto.quantidade;
+                var quantidadeTd = document.createElement('td');
+                quantidadeTd.textContent = produto.quantidade;
+                produtoRow.appendChild(quantidadeTd);
 
-                    produtoDiv.textContent += ' - Quantidade: ' + produto.quantidade + ' - Preço Total: R$ ' + precoTotal.toFixed(2);
-                } else {
-                    // Se a quantidade não foi selecionada, exibir uma mensagem indicando o problema
-                    produtoDiv.textContent += ' - Selecione uma quantidade';
-                }
+                var precoTd = document.createElement('td');
+                var precoTotal = produto.preco_venda * produto.quantidade;
+                precoTd.textContent = 'R$ ' + precoTotal.toFixed(2);
+                produtoRow.appendChild(precoTd);
 
-                produtosSelecionadosDiv.appendChild(produtoDiv);
-
-                // Adicionar um botão para remover o produto da lista
+                var acoesTd = document.createElement('td');
                 var removerButton = document.createElement('button');
                 removerButton.textContent = 'Remover';
                 removerButton.classList.add('button-remover-produto');
-                removerButton.dataset.id = produto.id; // Adiciona o ID do produto como um atributo personalizado
+                removerButton.dataset.id = produto.id;
                 removerButton.addEventListener('click', function () {
-                    // Obter o ID do produto a ser removido
                     var id = this.dataset.id;
-
-                    // Remover o produto da lista de produtos selecionados
                     produtosSelecionados = produtosSelecionados.filter(function (produto) {
                         return produto.id !== id;
                     });
-
-                    // Atualizar a lista de produtos na view
                     updateProdutoList();
                 });
+                acoesTd.appendChild(removerButton);
+                produtoRow.appendChild(acoesTd);
 
-                produtoDiv.appendChild(removerButton);
+                tabelaProdutos.appendChild(produtoRow);
             });
         }
 
-        // Atualizar o valor total na view
         updateValorTotal();
     }
 
-    // Função para atualizar o valor total na view
     function updateValorTotal() {
         var valorTotalProdutos = 0;
 
-        // Calcular o valor total com base nos produtos selecionados
         produtosSelecionados.forEach(function (produto) {
-            // Verificar se a quantidade e o preço do produto são números válidos
             var quantidade = parseInt(produto.quantidade);
             var preco_venda = parseFloat(produto.preco_venda);
 
@@ -149,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Atualizar o valor total dos produtos no input
         var valorTotalInput = document.getElementById('valor_total');
         if (valorTotalInput) {
             valorTotalInput.value = valorTotalProdutos.toFixed(2);
@@ -158,55 +130,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Ouvinte de evento para o botão "Cancelar"
     var cancelarButton = document.getElementById('cancelar');
     cancelarButton.addEventListener('click', function () {
         closeModal();
     });
 
-    // Ouvinte de evento para abrir o modal quando o botão for clicado
     var openModalButton = document.getElementById('openModal');
     openModalButton.addEventListener('click', function () {
         openModal();
     });
 
-    // Ouvinte de evento para o botão "Adicionar"
     var adicionarButton = document.getElementById('adicionarProduto');
     adicionarButton.addEventListener('click', function () {
-        // Obter o produto selecionado
         var select = document.getElementById('produtos-list');
         var selectedProductId = select.value;
         var selectedProductName = select.options[select.selectedIndex].text;
 
-        // Obter a quantidade
         var quantidadeInput = document.getElementById('quantidade');
         var quantidade = quantidadeInput.value;
 
-        // Verificar se a quantidade foi selecionada
         if (quantidade === '') {
             alert('Selecione uma quantidade para o produto.');
-            return; // Sair da função sem adicionar o produto
+            return;
         }
 
-        // Obter o preço
         var selectedProductPrice = parseFloat(select.options[select.selectedIndex].dataset.preco_venda);
 
-        // Verificar se o produto já está na lista
         var existingProductIndex = produtosSelecionados.findIndex(function (produto) {
             return produto.id === selectedProductId;
         });
 
         if (existingProductIndex !== -1) {
-            // Se o produto já estiver na lista, adicione apenas a quantidade e atualize o preço total
             produtosSelecionados[existingProductIndex].quantidade += parseInt(quantidade);
-
-            // Atualiza a lista de produtos na view
             updateProdutoList();
-
-            // Adiciona o produto ao formulário
             addProdutoToForm(produtosSelecionados[existingProductIndex]);
         } else {
-            // Caso contrário, crie um novo objeto representando o produto selecionado
             var produto = {
                 id: selectedProductId,
                 nome: selectedProductName,
@@ -214,23 +172,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 preco_venda: selectedProductPrice
             };
 
-            // Adicione o produto à lista de produtos selecionados
             produtosSelecionados.push(produto);
-
-            // Atualiza a lista de produtos na view
             updateProdutoList();
-
-            // Adiciona o produto ao formulário
             addProdutoToForm(produto);
         }
 
         closeModal();
-
-        // Limpa o campo de quantidade para que o usuário possa selecionar outra quantidade
         quantidadeInput.value = '';
     });
 
-    // Ouvinte de evento para o formulário ser submetido
     var form = document.querySelector('.form-add-pedido');
     form.addEventListener('submit', function () {
         produtosSelecionados.forEach(function (produto) {
@@ -238,3 +188,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function formatarCpf(cpf) {
+    return cpf.substr(0, 3) + '.' + cpf.substr(3, 3) + '.' + cpf.substr(6, 3) + '-' + cpf.substr(9, 2);
+}
+
+function formatarCep(cep) {
+    return cep.substr(0, 5) + '-' + cep.substr(5, 3);
+}
+
+function formatarTelefone(telefone) {
+    return '(' + telefone.substr(0, 2) + ') ' + telefone.substr(2, 5) + '-' + telefone.substr(7, 4);
+}

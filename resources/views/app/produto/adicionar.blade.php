@@ -4,6 +4,15 @@
 
 @section('titulo', 'Fornecedor')
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery Mask Money -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<!-- Select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 @section('conteudo')
     <div class="conteudo-pagina">
@@ -46,7 +55,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="preco_venda" placeholder="Preço de Venda"
+                    <input type="text" step="any" name="preco_venda" placeholder="R$ 0,00" id="preco_venda"
                            class="input-preco-venda-produto" required>
                 </div>
 
@@ -90,4 +99,14 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $('#preco_venda').maskMoney({
+            prefix: 'R$ ',
+            allowNegative: false,
+            thousands: '.',
+            decimal: ',',
+            affixesStay: true
+        });
+    </script>
 @endsection
