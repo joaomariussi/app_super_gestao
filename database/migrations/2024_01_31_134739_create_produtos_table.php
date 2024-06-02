@@ -17,6 +17,7 @@ class CreateProdutosTable extends Migration
             $table->id();
             $table->string('nome', 100);
             $table->text('descricao');
+            $table->string('codigo');
 
             // Adicionando a coluna unidade_id e definindo a chave estrangeira
             $table->unsignedBigInteger('unidade_id');
@@ -44,6 +45,10 @@ class CreateProdutosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produto');
+        Schema::dropIfExists('produtos');
+        Schema::table('produtos', function (Blueprint $table) {
+            $table->dropForeign('produtos_unidade_id_foreign');
+            $table->dropForeign('produtos_id_fornecedor_foreign');
+        });
     }
 }

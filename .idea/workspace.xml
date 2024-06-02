@@ -4,27 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Criando o método de visualizar pedido.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de visualizar&#10;&#10;- Ajustando o relacionamento entre as models.&#10;&#10;- Ajustando as views e o CSS das telas.">
-      <change afterPath="$PROJECT_DIR$/config/dompdf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/app/layouts/head.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/app/pedido/pdf.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/app_super_gestao.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app_super_gestao.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
+    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Criando o método de gerar PDF.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de gerar&#10;&#10;- Criando a view de gerar PDF.&#10;&#10;- Ajustando as views e o CSS das telas.&#10;&#10;- Finalizando os ajustes da tela de visualizar pedido.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PedidoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PedidoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/visualizar-pedido.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/visualizar-pedido.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/basico.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/visualizar-pedido.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/visualizar-pedido.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/layouts/basic.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/layouts/basic.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/pedido/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/pedido/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/pedido/visualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/pedido/visualizar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProdutoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProdutoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PedidoProdutosModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PedidoProdutosModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProdutoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProdutoModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_01_31_134739_create_produtos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_01_31_134739_create_produtos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_093245_create_clientes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_05_23_093245_create_clientes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_093540_create_pedidos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_05_23_093540_create_pedidos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_093943_add_id_to_clientes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_02_124949_encrypt_user_passwords.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_094241_add_foreign_key_to_pedidos_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_094612_create_pedido_produtos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_05_23_094612_create_pedido_produtos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_095318_criptografa_senha_usuarios.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/adicionar-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/adicionar-produto.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/index-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index-produto.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/adicionar-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/adicionar-produto.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/index-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/index-produto.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/produto/adicionar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/produto/adicionar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/produto/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/produto/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +282,7 @@
       <workItem from="1717115765419" duration="3104000" />
       <workItem from="1717118947079" duration="27000" />
       <workItem from="1717166348059" duration="860000" />
-      <workItem from="1717338142734" duration="320000" />
+      <workItem from="1717338142734" duration="4027000" />
     </task>
     <task id="LOCAL-00001" summary=":rocket: Criando algumas migrations">
       <option name="closed" value="true" />
@@ -423,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717087558582</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary=":rocket: Criando o método de gerar PDF.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de gerar&#10;&#10;- Criando a view de gerar PDF.&#10;&#10;- Ajustando as views e o CSS das telas.&#10;&#10;- Finalizando os ajustes da tela de visualizar pedido.">
+      <option name="closed" value="true" />
+      <created>1717338577726</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717338577726</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +453,8 @@
     <MESSAGE value=":rocket: Alguns ajustes." />
     <MESSAGE value=":rocket: Ajustando as migrations corretamente." />
     <MESSAGE value=":rocket: Criando o método de visualizar pedido.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de visualizar&#10;&#10;- Ajustando o relacionamento entre as models.&#10;&#10;- Ajustando as views e o CSS das telas." />
-    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Criando o método de visualizar pedido.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de visualizar&#10;&#10;- Ajustando o relacionamento entre as models.&#10;&#10;- Ajustando as views e o CSS das telas." />
+    <MESSAGE value=":rocket: Criando o método de gerar PDF.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de gerar&#10;&#10;- Criando a view de gerar PDF.&#10;&#10;- Ajustando as views e o CSS das telas.&#10;&#10;- Finalizando os ajustes da tela de visualizar pedido." />
+    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Criando o método de gerar PDF.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de gerar&#10;&#10;- Criando a view de gerar PDF.&#10;&#10;- Ajustando as views e o CSS das telas.&#10;&#10;- Finalizando os ajustes da tela de visualizar pedido." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

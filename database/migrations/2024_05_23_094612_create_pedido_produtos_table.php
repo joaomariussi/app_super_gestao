@@ -19,6 +19,7 @@ class CreatePedidoProdutosTable extends Migration
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('produto_id');
             $table->string('nome', 100);
+            $table->string('codigo');
             $table->integer('quantidade');
             $table->decimal('valor', 10, 2);
             $table->timestamps();

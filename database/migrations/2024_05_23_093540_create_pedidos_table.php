@@ -21,7 +21,7 @@ class CreatePedidosTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,8 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->dropForeign(['cliente_id']);
+        });
     }
 }
