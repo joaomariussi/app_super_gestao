@@ -2,8 +2,10 @@
 
 <title>Gerenciamento de Pedidos</title>
 
-<link rel="stylesheet" href="{{ asset('css/index-pedido.css') }}">
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/index-pedido.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
+@endpush
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClienteModel;
-use App\Models\FornecedorModel;
 use App\Models\PedidoModel;
 use App\Models\PedidoProdutosModel;
 use App\Models\ProdutoModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -14,6 +14,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Throwable;
 
 class PedidoController extends Controller
@@ -128,10 +129,14 @@ class PedidoController extends Controller
         try {
             $pedido = PedidoModel::with('cliente')->find($id);
 
-
             if ($pedido) {
                 $pedido_produtos = PedidoProdutosModel::where('pedido_id', $id)->with('produto')->get();
-                return view('app.pedido.visualizar', compact('pedido', 'pedido_produtos'));
+
+                // Calcula a quantidade total de produtos no pedido
+                $quantidade_total = $pedido_produtos->sum('quantidade');
+
+                return view('app.pedido.visualizar',
+                    compact('pedido', 'pedido_produtos', 'quantidade_total'));
             } else {
                 return redirect()->back()->with('error', 'Pedido não encontrado!');
             }
@@ -139,5 +144,27 @@ class PedidoController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function gerarPdf($id): Response|RedirectResponse
+    {
+        try {
+            $pedido = PedidoModel::with('cliente')->find($id);
+
+            if ($pedido) {
+                $pedido_produtos = PedidoProdutosModel::where('pedido_id', $id)->with('produto')->get();
+                $quantidade_total = $pedido_produtos->sum('quantidade');
+
+                $pdf = PDF::loadView('app.pedido.pdf',
+                    compact('pedido', 'pedido_produtos', 'quantidade_total'));
+
+                return $pdf->download('pedido_' . $pedido->id . '.pdf');
+            } else {
+                return redirect()->back()->with('error', 'Pedido não encontrado!');
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
 
 }
