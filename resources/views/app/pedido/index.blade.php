@@ -1,19 +1,22 @@
 @extends('app.layouts.basic')
 
-<title>Gerenciamento de Pedidos</title>
+@section('title', 'Pedidos')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/index-pedido.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
 @endpush
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/table-pedidos.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-pedido">
-            <h2>Gerenciamento de Pedidos</h2>
+            <h2 class="title-h2">Gerenciamento de Pedidos</h2>
         </div>
 
         <div class="menu-pedido">
@@ -84,5 +87,4 @@
         }
     </script>
 
-    <script src="{{ asset('js/table-pedidos.js') }}"></script>
 @endsection

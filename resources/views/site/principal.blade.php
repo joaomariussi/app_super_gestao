@@ -1,11 +1,12 @@
 @extends('app.layouts.basic')
 
-@section('titulo', $titulo)
+@section('title', 'Principal')
 
-<link rel="stylesheet" href="{{ asset('css/principal.css') }}">
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
+@endpush
 
 @section('conteudo')
-
     <div class="conteudo-destaque">
         <div class="esquerda">
             <div class="informacoes">
@@ -52,7 +53,7 @@
                     <br>
                     <select name="motivo_contato_id" required class="select-duvida">
                         <option value="">Qual o motivo do contato?</option>
-                        @foreach($motivos_contatos as $key => $motivo_contato)
+                        @foreach($motivos_contato as $key => $motivo_contato)
                             <option
                                 value="{{$motivo_contato->id}}"
                                 {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>

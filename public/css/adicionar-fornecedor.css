@@ -8,6 +8,14 @@ select, textarea, button {
     color: #333;
 }
 
+.title-h2 {
+    font-size: 25px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 ::placeholder {
     color: #333333;
     opacity: 1;

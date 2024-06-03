@@ -2,14 +2,13 @@
 
 <link rel="stylesheet" href="{{asset('css/adicionar-fornecedor.css')}}">
 
-@section('titulo', 'Fornecedor')
-
+@section('title', 'Novo Fornecedor')
 
 @section('conteudo')
     <div class="conteudo-pagina">
 
         <div class="titulo-fornecedor">
-            <h2>Gerenciamento de Fornecedores</h2>
+            <h2 class="title-h2">Gerenciamento de Fornecedores</h2>
         </div>
 
         <div class="informacao-pagina-fornecedor">
@@ -50,5 +49,4 @@
         </div>
     </div>
 
-    @include('app.layouts._partials.footer')
 @endsection

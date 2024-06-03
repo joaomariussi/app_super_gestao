@@ -3,6 +3,14 @@
     overflow: hidden;
 }
 
+.title-h2 {
+    font-size: 25px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .menu-fornecedor .button-wrapper {
     float: left;
     padding: 5px;

@@ -1,18 +1,26 @@
 @extends('app.layouts.basic')
 
-<title>Gerenciamento de Clientes</title>
+@section('title', 'Clientes')
 
-<link rel="stylesheet" href="{{ asset('css/index-cliente.css') }}">
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="{{ asset('css/index-cliente.css') }}">
+@endpush
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/table-clientes.js') }}"></script>
+    <script src="{{asset('js/scripts-mascaras.js')}}"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+@endpush
+
+
 
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-cliente">
-            <h2>Gerenciamento de Clientes</h2>
+            <h2 class="title-h2">Gerenciamento de Clientes</h2>
         </div>
 
         <div class="menu-cliente">
@@ -213,6 +221,5 @@
         }
     </script>
 
-    <script src="{{ asset('js/table-clientes.js') }}"></script>
-    <script src="{{asset('js/scripts-mascaras.js')}}"></script>
+
 @endsection

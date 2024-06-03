@@ -1,19 +1,24 @@
 @php use Carbon\Carbon; @endphp
 @extends('app.layouts.basic')
 
-<title>Gerenciamento de Fornecedores</title>
+@section('title', 'Fornecedores')
 
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
-<link rel="stylesheet" href="{{ asset('css/index-fornecedor.css') }}">
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="{{ asset('css/index-fornecedor.css') }}">
+@endpush
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/table-fornecedor.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
 
         <div class="titulo-fornecedor">
-            <h2>Gerenciamento de Fornecedores</h2>
+            <h2 class="title-h2">Gerenciamento de Fornecedores</h2>
         </div>
 
         <div class="menu-fornecedor">
@@ -179,6 +184,5 @@
         }
     </script>
 
-    <script src="{{ asset('js/table-fornecedor.js') }}"></script>
 @endsection
 

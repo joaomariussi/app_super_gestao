@@ -1,16 +1,23 @@
 @extends('app.layouts.basic')
 
+@section('title', 'Novo Cliente')
+
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/adicionar-cliente.css')}}">
+@endpush
+
+@push('scripts')
+    <script src="{{asset('js/scripts-mascaras.js')}}"></script>
+@endpush
+
+{{-- Adiciona o jQuery e o plugin jQuery Mask--}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-<link rel="stylesheet" href="{{asset('css/adicionar-cliente.css')}}">
-
-@section('titulo', 'Cliente')
 
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-cliente">
-            <h2>Gerenciamento de Clientes</h2>
+            <h2 class="title-h2">Gerenciamento de Clientes</h2>
         </div>
 
         <div class="informacao-pagina-cliente">
@@ -100,6 +107,7 @@
     </script>
 
     <script>
+        // Configura o evento blur para verificar o e-mail
         $(document).ready(function () {
             $('#email').on('blur', function () {
                 let email = $(this).val();
@@ -109,8 +117,10 @@
                     data: { email: email, _token: '{{ csrf_token() }}' },
                     success: function (response) {
                         if (response.existe) {
+                            // E-mail já cadastrado
                             $('#email-error').text('E-mail já cadastrado').show();
                         } else {
+                            // E-mail não cadastrado
                             $('#email-error').hide();
                         }
                     },
@@ -122,6 +132,4 @@
         });
     </script>
 
-    <script src="{{asset('js/scripts.js')}}"></script>
-    <script src="{{asset('js/scripts-mascaras.js')}}"></script>
 @endsection

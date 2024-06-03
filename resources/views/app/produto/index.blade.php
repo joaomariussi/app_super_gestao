@@ -1,17 +1,22 @@
 @extends('app.layouts.basic')
 
-<title>Gerenciamento de Produtos</title>
+@section('title', 'Produtos')
 
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
-<link rel="stylesheet" href="{{ asset('css/index-produto.css') }}">
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="{{ asset('css/index-produto.css') }}">
+@endpush
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/table-produtos.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-produto">
-            <h2>Gerenciamento de Produtos</h2>
+            <h2 class="title-h2">Gerenciamento de Produtos</h2>
         </div>
         <div class="menu-produto">
             <div class="button-wrapper">
@@ -27,8 +32,8 @@
             <table class="table table-striped" id="table-produtos">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Nome do Produto</th>
+                    <th scope="col">Código</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Peso (g)</th>
                     <th scope="col">Preço de Venda</th>
@@ -38,8 +43,8 @@
                 <tbody>
                 @forelse ($produtos as $produto)
                     <tr>
-                        <th scope="row">{{ $produto->id }}</th>
                         <td>{{ $produto->nome }}</td>
+                        <td>{{ $produto->codigo }}</td>
                         <td>{{ $produto->descricao }}</td>
                         <td>{{ $produto->peso }}</td>
                         <td>R$ {{ number_format($produto->preco_venda, 2, ',', '.') }}</td>
@@ -94,6 +99,10 @@
                 <input type="text" name="nome" class="nome-modal" placeholder="Nome do Produto" required>
             </div>
             <div class="form-group">
+                <label for="nome" class="codigo-label"> Código</label>
+                <input type="text" name="codigo" class="codigo-modal" placeholder="Código do Produto" required>
+            </div>
+            <div class="form-group">
                 <label for="nome" class="descricao-label"> Descrição</label>
                 <input type="text" name="descricao" class="descricao-modal" placeholder="Descrição" required>
             </div>
@@ -128,7 +137,7 @@
     </div>
 
     <script>
-        function openModalForEdit(id_fornecedor, unidade_id, nome, descricao, peso, preco_venda,
+        function openModalForEdit(id_fornecedor, unidade_id, nome, codigo, descricao, peso, preco_venda,
                                   quantidade, largura, comprimento, altura) {
 
             // Verifica se a opção temporária já foi adicionada ao select de fornecedor
@@ -159,6 +168,7 @@
             document.getElementsByName('id_fornecedor')[0].value = id_fornecedor;
             document.getElementsByName('unidade_id')[0].value = unidade_id;
             document.getElementsByName('nome')[0].value = nome;
+            document.getElementsByName('codigo')[0].value = codigo;
             document.getElementsByName('descricao')[0].value = descricao;
             document.getElementsByName('peso')[0].value = peso;
             document.getElementsByName('preco_venda')[0].value = preco_venda;
@@ -244,14 +254,8 @@
                     dataType: 'json',
                     success: function (response) {
                         console.log(response.message);
-                        // Verifica se há registros na tabela
-                        var table = $('#table-produtos').DataTable();
-                        if (table.data().count() === 0) {
-                            // Se não houver registros, não recarrega os dados
-                            return;
-                        }
-                        // Recarrega os dados do DataTables
-                        table.ajax.reload();
+                        // Recarrega a página
+                        location.reload();
                     },
                     error: function (xhr, status, error) {
                         console.error(error);
@@ -261,5 +265,4 @@
         }
     </script>
 
-    <script src="{{ asset('js/table-produtos.js') }}"></script>
 @endsection

@@ -1,24 +1,25 @@
 @extends('app.layouts.basic')
 
-<link rel="stylesheet" href="{{asset('css/adicionar-produto.css')}}">
+@section('title', 'Novo Produto')
 
-@section('titulo', 'Fornecedor')
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/adicionar-produto.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+@endpush
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- jQuery Mask Money -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-
-<!-- Select2 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{{ asset('js/scripts-mascaras.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
 
         <div class="titulo-fornecedor">
-            <h2>Gerenciamento de Produtos</h2>
+            <h2 class="title-h2">Gerenciamento de Produtos</h2>
         </div>
 
         <div class="informacao-pagina-produtos">
@@ -50,8 +51,13 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="descricao" placeholder="Descrição" class="input-descricao-produto"
-                           required>
+                    <input type="text" name="descricao" placeholder="Descrição"
+                           class="input-descricao-produto" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" step="any" name="codigo" placeholder="Código do Produto"
+                           class="input-codigo-produto" required>
                 </div>
 
                 <div class="form-group">
@@ -99,14 +105,4 @@
             </form>
         </div>
     </div>
-
-    <script>
-        $('#preco_venda').maskMoney({
-            prefix: 'R$ ',
-            allowNegative: false,
-            thousands: '.',
-            decimal: ',',
-            affixesStay: true
-        });
-    </script>
 @endsection

@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\MotivoContatoModel;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class PrincipalController extends Controller
 {
-    public function index()
+    public function index(): Factory|View|Application
     {
-        // Traz todos os motivos de contato
-        $motivos_contatos = MotivoContatoModel::all();
-
-        return view('site.principal', ['motivos_contatos' => $motivos_contatos], ['titulo' => 'Principal']);
+        try {
+            $motivos_contato = MotivoContatoModel::all();
+            return view('site.principal', compact('motivos_contato'));
+        } catch (Exception $e) {
+            return view('app.principal.index')->with('error', $e->getMessage());
+        }
     }
 }

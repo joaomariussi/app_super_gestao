@@ -1,24 +1,26 @@
 @extends('app.layouts.basic')
 
-<link rel="stylesheet" href="{{asset('css/adicionar-pedido.css')}}">
+@section('title', 'Criar Pedido')
 
-@section('titulo', 'Criar Pedido')
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/adicionar-pedido.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+@endpush
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 
-<!-- jQuery Mask Money -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-
-<!-- Select2 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
 
         <div class="titulo-pedido">
-            <h2>Gerenciamento de Pedidos</h2>
+            <h2 class="title-h2">Gerenciamento de Pedidos</h2>
         </div>
 
         <div class="informacao-pagina-pedido">
@@ -46,6 +48,7 @@
                         <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>Código</th>
                             <th>Quantidade</th>
                             <th>Preço Total</th>
                             <th>Ações</th>
@@ -90,6 +93,9 @@
     <div id="myModal" class="modal-produtos">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="mensagemSemProdutos" style="display: none;">
+                <p class="sem-produto">Não há produtos cadastrados.</p>
+            </div>
             <select class="select-servico" id="produtos-list"></select>
             <input class="label-script" type="number" id="quantidade" placeholder="Quantidade" min="1">
             <button id="adicionarProduto" class="button-add-modal">Adicionar</button>
@@ -102,15 +108,6 @@
         function closeModal() {
             document.getElementById('myModal').style.display = 'none';
         }
-
-        $('#valor_total').maskMoney({
-            prefix: 'R$ ',
-            allowNegative: false,
-            thousands: '.',
-            decimal: ',',
-            affixesStay: true
-        });
     </script>
 
-    <script src="{{asset('js/scripts.js')}}"></script>
 @endsection

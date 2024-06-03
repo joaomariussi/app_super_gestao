@@ -5,6 +5,14 @@
     margin-bottom: 100px;
 }
 
+.title-h2 {
+    font-size: 25px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .titulo-cliente {
     padding: 70px 0 10px 0;
     margin-bottom: 10px;
