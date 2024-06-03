@@ -18,8 +18,7 @@
             <div class="info-pedido coluna-informacoes">
                 <h3>Informações do Pedido</h3>
                 <p><strong>ID do Pedido:</strong> {{ $pedido->id }}</p>
-                <p><strong>Data do Pedido:</strong> {{ $pedido->created_at->format('d/m/Y H:i') }}</p>
-                <p><strong>Última Atualização:</strong> {{ $pedido->updated_at->format('d/m/Y H:i') }}</p>
+                <p><strong>Pedido criado em:</strong> {{ $pedido->created_at->format('d/m/Y H:i') }}</p>
                 <a class="button-imprimir" href="{{ route('app.pedido.pdf', ['id' => $pedido->id]) }}">
                     Imprimir Pedido
                 </a>
@@ -62,6 +61,7 @@
                 <thead>
                 <tr>
                     <th>Produto</th>
+                    <th>Código Produto</th>
                     <th>Quantidade</th>
                     <th>Valor</th>
                 </tr>
@@ -70,6 +70,7 @@
                 @foreach($pedido_produtos as $produto)
                     <tr>
                         <td>{{ $produto->produto->nome }}</td>
+                        <td>{{ $produto->produto->codigo }}</td>
                         <td>{{ $produto->quantidade }}</td>
                         <td>R$ {{ number_format($produto->valor, 2, ',', '.') }}</td>
                     </tr>

@@ -64,6 +64,7 @@ class PedidoController extends Controller
                     $pedido_produto->produto_id = $produto['id_produto'];
                     $pedido_produto->cliente_id = $dados_pedido['cliente_id'];
                     $pedido_produto->nome = $produto['nome_produto'];
+                    $pedido_produto->codigo = $produto['codigo_produto'];
                     $pedido_produto->quantidade = $produto['quantidade'];
                     $pedido_produto->valor = $produto['valor'];
 
@@ -165,6 +166,4 @@ class PedidoController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-
-
 }

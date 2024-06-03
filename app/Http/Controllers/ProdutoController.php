@@ -87,33 +87,31 @@ class ProdutoController extends Controller
     public function excluir($id): JsonResponse
     {
         try {
-            // Busca o fornecedor pelo ID
-            $produtos = ProdutoModel::find($id);
+            // Busca o produto pelo ID
+            $produto = ProdutoModel::find($id);
 
-            $unidades = UnidadeModel::all();
-
-            // Verifique se o fornecedor existe
-            if ($produtos) {
-                // Excluí o fornecedor
-                $produtos->delete();
-                return response()->json(['message' => 'Produto excluído com sucesso!',
-                    compact('produtos', 'unidades')]);
+            // Verifique se o produto existe
+            if ($produto) {
+                // Excluí o produto
+                $produto->delete();
+                return response()->json(['message' => 'Produto excluído com sucesso!']);
             } else {
-                return response()->json(['error' => 'Fornecedor não encontrado!'], 404);
+                return response()->json(['error' => 'Produto não encontrado!'], 404);
             }
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    public function visualizar(): Factory|View|Application
-    {
-        try {
-            $produtos = ProdutoModel::all();
 
-            return view('app.produto.visualizar', compact('produtos'));
-        } catch (Exception $e) {
-            return view('app.produto.visualizar', ['message' => $e->getMessage()]);
-        }
-
-    }
+//    public function visualizar(): Factory|View|Application
+//    {
+//        try {
+//            $produtos = ProdutoModel::all();
+//
+//            return view('app.produto.visualizar', compact('produtos'));
+//        } catch (Exception $e) {
+//            return view('app.produto.visualizar', ['message' => $e->getMessage()]);
+//        }
+//
+//    }
 }

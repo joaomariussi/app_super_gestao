@@ -7,6 +7,15 @@ $(document).ready(function () {
 
     // Máscara para CEPx
     $('#cep').mask('00000-000');
+
+    $('#preco_venda').maskMoney({
+        prefix: 'R$ ',
+        allowNegative: false,
+        thousands: '.',
+        decimal: ',',
+        affixesStay: true
+    });
+
 });
 
 

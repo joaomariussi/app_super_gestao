@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     var produtosSelecionados = [];
 
     function closeModal() {
@@ -21,6 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
             inputNome.name = 'produtos[' + produto.id + '][nome_produto]';
             inputNome.value = produto.nome;
             form.appendChild(inputNome);
+
+            var inputCodigo = document.createElement('input');
+            inputCodigo.type = 'hidden';
+            inputCodigo.name = 'produtos[' + produto.id + '][codigo_produto]';
+            inputCodigo.value = produto.codigo;
+            form.appendChild(inputCodigo);
 
             var inputValorProduto = document.createElement('input');
             inputValorProduto.type = 'hidden';
@@ -50,13 +55,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 var select = document.getElementById('produtos-list');
                 select.innerHTML = '';
 
-                data.forEach(function (produto) {
-                    var option = document.createElement('option');
-                    option.text = produto.nome;
-                    option.value = produto.id;
-                    option.dataset.preco_venda = produto.preco_venda;
-                    select.appendChild(option);
-                });
+                if (data.length === 0) {
+                    document.getElementById('mensagemSemProdutos').style.display = 'block';
+                } else {
+                    document.getElementById('mensagemSemProdutos').style.display = 'none';
+                    data.forEach(function (produto) {
+                        var option = document.createElement('option');
+                        option.text = produto.nome;
+                        option.value = produto.id;
+                        option.dataset.preco_venda = produto.preco_venda;
+                        option.dataset.codigo = produto.codigo;
+                        select.appendChild(option);
+                    });
+                }
             })
             .catch(error => {
                 console.error('Erro ao obter os produtos:', error);
@@ -78,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 var nomeTd = document.createElement('td');
                 nomeTd.textContent = produto.nome;
                 produtoRow.appendChild(nomeTd);
+
+                var codigoTd = document.createElement('td');
+                codigoTd.textContent = produto.codigo;
+                produtoRow.appendChild(codigoTd);
 
                 var quantidadeTd = document.createElement('td');
                 quantidadeTd.textContent = produto.quantidade;
@@ -125,6 +140,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var valorTotalInput = document.getElementById('valor_total');
         if (valorTotalInput) {
             valorTotalInput.value = valorTotalProdutos.toFixed(2);
+
+            // Força a atualização da máscara
+            $(valorTotalInput).maskMoney('mask', valorTotalInput.value);
         } else {
             console.error("Elemento 'valor_total' não encontrado");
         }
@@ -145,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var select = document.getElementById('produtos-list');
         var selectedProductId = select.value;
         var selectedProductName = select.options[select.selectedIndex].text;
+        var selectedProductCode = select.options[select.selectedIndex].dataset.codigo;
 
         var quantidadeInput = document.getElementById('quantidade');
         var quantidade = quantidadeInput.value;
@@ -168,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var produto = {
                 id: selectedProductId,
                 nome: selectedProductName,
+                codigo: selectedProductCode,
                 quantidade: parseInt(quantidade),
                 preco_venda: selectedProductPrice
             };
@@ -187,6 +207,15 @@ document.addEventListener('DOMContentLoaded', function () {
             addProdutoToForm(produto);
         });
     });
+});
+
+// Máscara para o campo Valor Total
+$('#valor_total').maskMoney({
+    prefix: 'R$ ',
+    allowNegative: false,
+    thousands: '.',
+    decimal: ',',
+    affixesStay: true
 });
 
 function formatarCpf(cpf) {

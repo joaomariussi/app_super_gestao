@@ -14,6 +14,7 @@ class PedidoProdutosModel extends Model
         'produto_id',
         'cliente_id',
         'nome',
+        'codigo',
         'quantidade',
         'valor'
     ];
