@@ -15,7 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
     Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
     Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
-});
+
 
 Route::group(['prefix' => '/fornecedor'], function () {
     Route::get('/', [FornecedorController::class, 'index'])->name('app.fornecedor');
@@ -62,6 +62,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'destroy'])->name('logout');
 
+});
 
 Route::fallback(function () {
     echo 'A rota acessada não existe.

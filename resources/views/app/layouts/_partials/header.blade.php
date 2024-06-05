@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="{{ asset('css/header.css') }}">
-
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+@endpush
 <div class="topo">
-
     <div class="logo">
-        <img src="/img/logo.png">
+        <a href="{{ route('site.principal')  }}"><img src={{ asset('img/flavicon.png') }} alt="Logo"></a>
     </div>
     <div class="menu">
         <nav>

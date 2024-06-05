@@ -1,74 +1,92 @@
 @extends('app.layouts.basic')
 
-@section('title', 'Principal')
+@section('title', 'Dashboard')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
+    <!-- Adicione um link ao CDN de Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 @endpush
 
 @section('conteudo')
-    <div class="conteudo-destaque">
-        <div class="esquerda">
-            <div class="informacoes">
-                <h1>Sistema Super Gestão</h1>
-                <p>Software para gestão empresarial ideal para sua empresa.
-                <p>
-                <div class="chamada">
-                    <img src="/img/check.png">
-                    <span class="texto-branco">Gestão completa e descomplicada</span>
-                </div>
-                <div class="chamada">
-                    <img src="img/check.png">
-                    <span class="texto-branco">Sua empresa na nuvem</span>
-                </div>
+    <div class="dashboard-container">
+        <div class="titulo-dashboard">
+            <h3 class="title-h3">Bem-vindo(a) ao seu painel de controle!</h3>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="dashboard-card dashboard-card-customers">
+                <i class="fas fa-users fa-2x"></i>
+                <h3>Clientes Cadastrados</h3>
+                <p class="total-clientes">{{ $total_clientes }}</p>
             </div>
 
-            <div class="video">
-                <img src="img/player_video.jpg">
+            <div class="dashboard-card dashboard-card-orders">
+                <i class="fas fa-shopping-cart fa-2x"></i>
+                <h3>Pedidos Realizados</h3>
+                <p class="total-pedidos">{{ $total_pedidos }}</p>
+            </div>
+
+            <div class="dashboard-card dashboard-card-products">
+                <i class="fas fa-box-open fa-2x"></i>
+                <h3>Produtos Cadastrados</h3>
+                <p class="total-produtos">{{ $total_produtos }}</p>
+            </div>
+
+            <div class="dashboard-card dashboard-card-suppliers">
+                <i class="fas fa-truck fa-2x"></i>
+                <h3>Fornecedores Cadastrados</h3>
+                <p class="total-fornecedores">{{ $total_fornecedores }}</p>
             </div>
         </div>
 
-        <div class="direita">
-            <div class="contato-home">
-                <h1>Contato</h1>
-                <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
-
-                @if (session('success'))
-                    <div class="alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                @if (session('error'))
-                    <div class="alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                <form class="form-home" action="{{ route('site.contato') }}" method="post">
-                    @csrf
-                    <input name="nome" type="text" placeholder="Nome" required class="form-nome">
-                    <br>
-                    <input name="telefone" type="text" placeholder="Telefone" required class="form-telefone">
-                    <br>
-                    <input name="email" type="text" placeholder="E-mail" required class="form-email">
-                    <br>
-                    <select name="motivo_contato_id" required class="select-duvida">
-                        <option value="">Qual o motivo do contato?</option>
-                        @foreach($motivos_contato as $key => $motivo_contato)
-                            <option
-                                value="{{$motivo_contato->id}}"
-                                {{old('motivo_contato_id') == $motivo_contato->id ? 'selected' : ''}}>
-                                {{$motivo_contato->motivo}}</option>
-                        @endforeach
-                    </select>
-                    <br>
-                    <textarea name="mensagem" class="form-mensagem" required
-                              placeholder="Preencha aqui a sua mensagem"></textarea>
-                    <br>
-                    <button type="submit" class="btn-enviar">Enviar</button>
-                </form>
-            </div>
+        <!-- Adicione uma seção de gráficos -->
+        <div class="dashboard-charts">
+            <h3 class="charts-title">Visão Geral dos Dados</h3>
+            <canvas id="chart-container"></canvas>
         </div>
     </div>
 
     @include('app.layouts._partials.footer')
 @endsection
+
+@push('scripts')
+    <!-- Adicione um link ao CDN de Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Código JavaScript para gerar gráficos
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('chart-container').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Clientes', 'Pedidos', 'Produtos', 'Fornecedores'],
+                    datasets: [{
+                        label: 'Totais',
+                        data: [{{ $total_clientes }}, {{ $total_pedidos }}, {{ $total_produtos }}, {{ $total_fornecedores }}],
+                        backgroundColor: [
+                            '#fabe2c',
+                            '#2ecc71',
+                            '#e74c3c',
+                            '#3498db'
+                        ],
+                        borderColor: [
+                            '#f39c12',
+                            '#27ae60',
+                            '#c0392b',
+                            '#2980b9'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

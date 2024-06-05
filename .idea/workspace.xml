@@ -4,47 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Ajustando as migrations.">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":lipstick: Ajustes nas views e na sua estrutura.&#10;&#10;- Adicionando na view o méto de push para separar todos os arquivos que são de CSS e todos que são Scripts.">
+      <change afterPath="$PROJECT_DIR$/public/img/flavicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/gestao-de-dados.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/instagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/twitter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/flavicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/gestao-de-dados.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/instagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/img/twitter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/app_super_gestao.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app_super_gestao.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PedidoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PedidoController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PrincipalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PrincipalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProdutoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProdutoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PedidoProdutosModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PedidoProdutosModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProdutoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProdutoModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/adicionar-cliente.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/adicionar-cliente.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/adicionar-fornecedor.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/adicionar-fornecedor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/adicionar-pedido.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/adicionar-pedido.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/adicionar-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/adicionar-produto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index-cliente.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index-cliente.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index-fornecedor.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index-fornecedor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index-pedido.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index-pedido.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index-produto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/scripts-mascaras.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts-mascaras.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/adicionar-cliente.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/adicionar-cliente.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/adicionar-fornecedor.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/adicionar-fornecedor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/adicionar-pedido.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/adicionar-pedido.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/adicionar-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/adicionar-produto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/index-cliente.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/index-cliente.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/index-fornecedor.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/index-fornecedor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/index-pedido.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/index-pedido.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/index-produto.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/index-produto.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/scripts-mascaras.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/scripts-mascaras.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/cliente/adicionar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/cliente/adicionar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/cliente/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/cliente/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/fornecedor/adicionar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/fornecedor/adicionar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/fornecedor/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/fornecedor/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/principal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/principal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/facebook.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/facebook.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/fundo-login.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/fundo-login2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/mapa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/player_video.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/youtube.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/youtube.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/principal.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/principal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/facebook.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/facebook.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/fundo-login.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/mapa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/player_video.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/img/youtube.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/img/youtube.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/layouts/_partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/layouts/_partials/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/layouts/_partials/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/layouts/_partials/header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/app/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/layouts/head.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/pedido/adicionar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/pedido/adicionar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/pedido/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/pedido/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/pedido/visualizar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/pedido/visualizar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/produto/adicionar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/produto/adicionar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/produto/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/produto/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/login/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/login/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/site/principal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/principal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +302,9 @@
       <workItem from="1717118947079" duration="27000" />
       <workItem from="1717166348059" duration="860000" />
       <workItem from="1717338142734" duration="13137000" />
-      <workItem from="1717453056531" duration="1762000" />
+      <workItem from="1717453056531" duration="8646000" />
+      <workItem from="1717539660474" duration="1000" />
+      <workItem from="1717539674064" duration="5391000" />
     </task>
     <task id="LOCAL-00001" summary=":rocket: Criando algumas migrations">
       <option name="closed" value="true" />
@@ -460,7 +458,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717343632438</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary=":rocket: Adicionando o campo código do produto na tela de visualizar pedido.&#10;&#10;- Resgatando o código do produto no meu PedidoController e salvando no banco de dados.&#10;&#10;- Ajustando as Models para identificar esse novo campo &quot;codigo&quot;.&#10;&#10;- Trazendo o código do produto no script de produtos selecionados para a view.&#10;&#10;- Mostrando o codigo do produto na view de criar pedido.&#10;&#10;- Ajustes nas máscaras.">
+      <option name="closed" value="true" />
+      <created>1717455102859</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717455102859</updated>
+    </task>
+    <task id="LOCAL-00021" summary=":lipstick: Ajustes nas views e na sua estrutura.&#10;&#10;- Adicionando na view o méto de push para separar todos os arquivos que são de CSS e todos que são Scripts.">
+      <option name="closed" value="true" />
+      <created>1717455192636</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717455192636</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +501,9 @@
     <MESSAGE value=":rocket: Criando o método de visualizar pedido.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de visualizar&#10;&#10;- Ajustando o relacionamento entre as models.&#10;&#10;- Ajustando as views e o CSS das telas." />
     <MESSAGE value=":rocket: Criando o método de gerar PDF.&#10;&#10;- Criando a função no controller.&#10;&#10;- Criando a rota de gerar&#10;&#10;- Criando a view de gerar PDF.&#10;&#10;- Ajustando as views e o CSS das telas.&#10;&#10;- Finalizando os ajustes da tela de visualizar pedido." />
     <MESSAGE value=":rocket: Ajustando as migrations." />
-    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Ajustando as migrations." />
+    <MESSAGE value=":rocket: Adicionando o campo código do produto na tela de visualizar pedido.&#10;&#10;- Resgatando o código do produto no meu PedidoController e salvando no banco de dados.&#10;&#10;- Ajustando as Models para identificar esse novo campo &quot;codigo&quot;.&#10;&#10;- Trazendo o código do produto no script de produtos selecionados para a view.&#10;&#10;- Mostrando o codigo do produto na view de criar pedido.&#10;&#10;- Ajustes nas máscaras." />
+    <MESSAGE value=":lipstick: Ajustes nas views e na sua estrutura.&#10;&#10;- Adicionando na view o méto de push para separar todos os arquivos que são de CSS e todos que são Scripts." />
+    <option name="LAST_COMMIT_MESSAGE" value=":lipstick: Ajustes nas views e na sua estrutura.&#10;&#10;- Adicionando na view o méto de push para separar todos os arquivos que são de CSS e todos que são Scripts." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
