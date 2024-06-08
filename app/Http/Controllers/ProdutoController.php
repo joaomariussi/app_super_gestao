@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class ProdutoController extends Controller
 {
@@ -74,12 +75,17 @@ class ProdutoController extends Controller
             if ($produtos) {
                 // Atualiza o produto
                 $produtos->update($request->all());
-                return response()->json(['message' => 'Produto atualizado com sucesso!',
-                    compact('unidades', 'produtos')]);
+                flash('Produto atualizado com sucesso!')->success();
+                return response()->json(
+                    ['message' => 'Produto atualizado com sucesso!',
+                        'produto' => $produtos, 'unidades' => $unidades
+                    ]);
             } else {
+                flash()->error('Produto não encontrado!');
                 return response()->json(['error' => 'Produto não encontrado!'], 404);
             }
         } catch (Exception $e) {
+            flash()->error('Ocorreu um erro ao atualizar o produto. Por favor, tente novamente.');
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
@@ -90,28 +96,41 @@ class ProdutoController extends Controller
             // Busca o produto pelo ID
             $produto = ProdutoModel::find($id);
 
-            // Verifique se o produto existe
-            if ($produto) {
-                // Excluí o produto
-                $produto->delete();
-                return response()->json(['message' => 'Produto excluído com sucesso!']);
-            } else {
+            // Verifica se o produto existe
+            if (!$produto) {
+                flash()->error('Produto não encontrado!');
                 return response()->json(['error' => 'Produto não encontrado!'], 404);
             }
+
+            // Verifica se o produto está associado a um pedido
+            if ($produto->pedido()->exists()) {
+                flash()->error('Produto não pode ser excluído, pois está associado a um pedido.');
+                return response()->json(['error' => 'Produto não pode ser excluído, pois está associado a um pedido.'], 400);
+            }
+
+            // Exclui o produto do banco de dados
+            $produto->delete();
+            flash()->success('Produto excluído com sucesso!');
+            return response()->json(['message' => 'Produto excluído com sucesso!']);
+
         } catch (Exception $e) {
+            flash()->error('Ocorreu um erro ao excluir o produto. Por favor, tente novamente.');
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-//    public function visualizar(): Factory|View|Application
-//    {
-//        try {
-//            $produtos = ProdutoModel::all();
-//
-//            return view('app.produto.visualizar', compact('produtos'));
-//        } catch (Exception $e) {
-//            return view('app.produto.visualizar', ['message' => $e->getMessage()]);
-//        }
-//
-//    }
+    public function visualizar($id): Factory|View|Application
+    {
+        try {
+            $produto = ProdutoModel::with('unidade', 'fornecedor')->find($id);
+
+            if ($produto) {
+                return view('app.produto.visualizar', compact('produto'));
+            } else {
+                return view('app.produto.index', ['message' => 'Produto não encontrado!']);
+            }
+        } catch (Exception $e) {
+            return view('app.produto.index', ['message' => $e->getMessage()]);
+        }
+    }
 }

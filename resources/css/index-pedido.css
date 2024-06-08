@@ -93,9 +93,17 @@
     margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
 }
 
-.button-visualizar {
+.button-delete:hover {
+    background-color: #da251d;
+}
+
+.sorting_1 td {
+    text-align: center;
+}
+
+.button-view {
     width: auto;
-    background-color: #2a9ee2;
+    background-color: #0ad278;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -109,27 +117,8 @@
     margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
 }
 
-.button-delete:hover {
-    background-color: #da251d;
-}
-
-.sorting_1 td {
-    text-align: center;
-}
-
-.button-view {
-    background-color: #2a9ee2;
-    color: white;
-    padding: 10px 20px;
-    width: auto;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    margin-top: 10px;
+.button-view:hover {
+    background-color: #0abf78;
 }
 
 .button-container {

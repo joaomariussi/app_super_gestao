@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="{{ asset('css/index-produto.css') }}">
 @endpush
 
-@push('scripts')
+@push('head-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/table-produtos.js') }}"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/table-produtos.js') }}"></script>
 @endpush
 
 @section('conteudo')
@@ -32,10 +35,9 @@
             <table class="table table-striped" id="table-produtos">
                 <thead>
                 <tr>
-                    <th scope="col">Nome do Produto</th>
+                    <th scope="col">Nome</th>
                     <th scope="col">Código</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Peso (g)</th>
+                    <th scope="col">Estoque</th>
                     <th scope="col">Preço de Venda</th>
                     <th scope="col">Opções</th>
                 </tr>
@@ -45,21 +47,24 @@
                     <tr>
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->codigo }}</td>
-                        <td>{{ $produto->descricao }}</td>
-                        <td>{{ $produto->peso }}</td>
+                        <td>{{ $produto->quantidade }}</td>
                         <td>R$ {{ number_format($produto->preco_venda, 2, ',', '.') }}</td>
                         <td>
-                            <form class="form-group" id="form-editar-fornecedor-{{ $produto->id }}"
+                            <form class="form-group" id="form-editar-produto-{{ $produto->id }}"
                                   action="{{ route('app.produto.editar', ['id' => $produto->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="produto_id" value="{{ $produto->id }}">
+                                <a href="{{ route('app.produto.visualizar', $produto->id) }}" class="button-visualizar">
+                                    Visualizar
+                                </a>
                                 <button type="button" class="button-edit"
-                                        onclick="openModalForEdit('{{ $produto->id_fornecedor }}', '{{ $produto->unidade_id }}',
-                                        '{{ $produto->nome }}', '{{ $produto->descricao }}', '{{ $produto->peso }}',
-                                        '{{ $produto->preco_venda }}','{{ $produto->quantidade }}', '{{ $produto->largura }}',
+                                        onclick="openModalForEdit('{{ $produto->id }}', '{{ $produto->id_fornecedor }}', '{{ $produto->unidade_id }}',
+                                        '{{ $produto->nome }}', '{{ $produto->codigo }}', '{{ $produto->descricao }}', '{{ $produto->peso }}',
+                                        '{{ $produto->preco_venda }}', '{{ $produto->quantidade }}', '{{ $produto->largura }}',
                                         '{{ $produto->comprimento }}', '{{ $produto->altura }}')">Editar
                                 </button>
+
                                 <button type="button" class="button-delete"
                                         onclick="excluirProduto('{{ $produto->id }}')">Excluir
                                 </button>
@@ -77,7 +82,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div class="form-group">
-                <label for="nome" class="fornecedor-label"> Fornecedor</label>
+                <label for="id_fornecedor" class="fornecedor-label">Fornecedor</label>
                 <select name="id_fornecedor" class="select_fornecedor" required>
                     <option value="" disabled selected>Selecione o Fornecedor</option>
                     @foreach ($fornecedores as $fornecedor)
@@ -86,7 +91,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="nome" class="unidade-label"> Unidade de Medida</label>
+                <label for="unidade_id" class="unidade-label">Unidade de Medida</label>
                 <select name="unidade_id" class="select_unidade" required>
                     <option value="" disabled selected>Selecione a Unidade de Medida</option>
                     @foreach ($unidades as $unidade)
@@ -95,40 +100,39 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="nome" class="nome-label"> Nome do Produto</label>
+                <label for="nome" class="nome-label">Nome do Produto</label>
                 <input type="text" name="nome" class="nome-modal" placeholder="Nome do Produto" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="codigo-label"> Código</label>
+                <label for="codigo" class="codigo-label">Código</label>
                 <input type="text" name="codigo" class="codigo-modal" placeholder="Código do Produto" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="descricao-label"> Descrição</label>
+                <label for="descricao" class="descricao-label">Descrição</label>
                 <input type="text" name="descricao" class="descricao-modal" placeholder="Descrição" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="peso-label"> Peso (g)</label>
+                <label for="peso" class="peso-label">Peso (kg)</label>
                 <input type="text" name="peso" class="peso-modal" placeholder="Peso" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="preco-venda-label"> Preço de Venda</label>
+                <label for="preco_venda" class="preco-venda-label">Preço de Venda</label>
                 <input type="text" name="preco_venda" class="preco-venda-modal" placeholder="Preço de Venda" required>
             </div>
             <div class="form-group">
-                <label for="quantidade" class="quantidade-label"> Quantidade</label>
-                <input type="number" step="any" name="quantidade" class="quantidade" placeholder="Quantidade"
-                       required>
+                <label for="quantidade" class="quantidade-label">Quantidade</label>
+                <input type="number" step="any" name="quantidade" class="quantidade" placeholder="Quantidade" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="largura-label"> Largura (cm)</label>
+                <label for="largura" class="largura-label">Largura (cm)</label>
                 <input type="text" name="largura" class="largura-modal" placeholder="Largura" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="comprimento-label"> Comprimento (cm)</label>
+                <label for="comprimento" class="comprimento-label">Comprimento (cm)</label>
                 <input type="text" name="comprimento" class="comprimento-modal" placeholder="Comprimento" required>
             </div>
             <div class="form-group">
-                <label for="nome" class="altura-label"> Altura (cm)</label>
+                <label for="altura" class="altura-label">Altura (cm)</label>
                 <input type="text" name="altura" class="altura-modal" placeholder="Altura" required>
             </div>
             <button type="button" class="button-save-modal" onclick="saveChanges()">Salvar</button>
@@ -137,34 +141,9 @@
     </div>
 
     <script>
-        function openModalForEdit(id_fornecedor, unidade_id, nome, codigo, descricao, peso, preco_venda,
+        function openModalForEdit(id, id_fornecedor, unidade_id, nome, codigo, descricao, peso, preco_venda,
                                   quantidade, largura, comprimento, altura) {
-
-            // Verifica se a opção temporária já foi adicionada ao select de fornecedor
-            var selectFornecedor = document.getElementsByName('id_fornecedor')[0];
-            var placeholderOptionFornecedor = selectFornecedor.querySelector('[value=""]');
-            if (!placeholderOptionFornecedor) {
-                placeholderOptionFornecedor = document.createElement('option');
-                placeholderOptionFornecedor.value = '';
-                placeholderOptionFornecedor.text = 'Selecione o Fornecedor';
-                placeholderOptionFornecedor.disabled = true;
-                placeholderOptionFornecedor.selected = true;
-                selectFornecedor.add(placeholderOptionFornecedor);
-            }
-
-            // Verifica se a opção temporária já foi adicionada ao select de unidade de medida
-            var selectUnidade = document.getElementsByName('unidade_id')[0];
-            var placeholderOptionUnidade = selectUnidade.querySelector('[value=""]');
-            if (!placeholderOptionUnidade) {
-                placeholderOptionUnidade = document.createElement('option');
-                placeholderOptionUnidade.value = '';
-                placeholderOptionUnidade.text = 'Selecione a Unidade de Medida';
-                placeholderOptionUnidade.disabled = true;
-                placeholderOptionUnidade.selected = true;
-                selectUnidade.add(placeholderOptionUnidade);
-            }
-
-            document.getElementById('modal-produto').style.display = 'block';
+            document.getElementsByName('produto_id')[0].value = id;
             document.getElementsByName('id_fornecedor')[0].value = id_fornecedor;
             document.getElementsByName('unidade_id')[0].value = unidade_id;
             document.getElementsByName('nome')[0].value = nome;
@@ -176,9 +155,10 @@
             document.getElementsByName('largura')[0].value = largura;
             document.getElementsByName('comprimento')[0].value = comprimento;
             document.getElementsByName('altura')[0].value = altura;
+
+            document.getElementById('modal-produto').style.display = 'block';
         }
 
-        // Remove a opção temporária quando uma opção é selecionada no select de fornecedor
         document.getElementsByName('id_fornecedor')[0].addEventListener('change', function () {
             var select = document.getElementsByName('id_fornecedor')[0];
             if (select.selectedIndex === 0) {
@@ -186,7 +166,6 @@
             }
         });
 
-        // Remove a opção temporária quando uma opção é selecionada no select de unidade de medida
         document.getElementsByName('unidade_id')[0].addEventListener('change', function () {
             var select = document.getElementsByName('unidade_id')[0];
             if (select.selectedIndex === 0) {
@@ -203,6 +182,7 @@
             var id_fornecedor = document.getElementsByName('id_fornecedor')[0].value;
             var unidade_id = document.getElementsByName('unidade_id')[0].value;
             var nome = document.getElementsByName('nome')[0].value;
+            var codigo = document.getElementsByName('codigo')[0].value;
             var descricao = document.getElementsByName('descricao')[0].value;
             var peso = document.getElementsByName('peso')[0].value;
             var preco_venda = document.getElementsByName('preco_venda')[0].value;
@@ -219,6 +199,7 @@
                     id_fornecedor: id_fornecedor,
                     unidade_id: unidade_id,
                     nome: nome,
+                    codigo: codigo,
                     descricao: descricao,
                     peso: peso,
                     preco_venda: preco_venda,
@@ -245,7 +226,7 @@
         function excluirProduto(id) {
             if (confirm('Deseja realmente excluir este produto?')) {
                 $.ajax({
-                    type: 'POST',
+                    type: 'DELETE',
                     url: '/produto/excluir/' + id,
                     data: {
                         id: id,
@@ -253,16 +234,28 @@
                     },
                     dataType: 'json',
                     success: function (response) {
-                        console.log(response.message);
-                        // Recarrega a página
-                        location.reload();
+                        window.location.href = '{{ route("app.produto") }}';
                     },
                     error: function (xhr, status, error) {
-                        console.error(error);
+                        window.location.href = '{{ route("app.produto") }}';
                     }
                 });
             }
         }
-    </script>
 
+        $(document).ready(function(){
+            // Espera a página carregar completamente
+            setTimeout(function(){
+                // Verifica se há uma mensagem flash
+                if($('.alert').length > 0){
+                    // Mostra a mensagem flash
+                    $('.alert').slideDown();
+                    // Define um tempo para esconder a mensagem flash após 5 segundos
+                    setTimeout(function(){
+                        $('.alert').slideUp();
+                    }, 4000);
+                }
+            }, 1000); // Aguarda 1 segundo antes de verificar a existência da mensagem flash
+        });
+    </script>
 @endsection

@@ -199,9 +199,9 @@
     background-color: #504f4f;
 }
 
-.visualizar-produto {
+.button-visualizar {
     width: auto;
-    background-color: #1220ff;
+    background-color: #0ad278;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -215,8 +215,8 @@
     margin-left: 10px; /* Adiciona uma margem à esquerda para criar espaço entre os botões */
 }
 
-.visualizar-produto:hover {
-    background-color: #007a9b;
+.button-visualizar:hover {
+    background-color: #3dec9c;
 }
 
 .modal-produto {

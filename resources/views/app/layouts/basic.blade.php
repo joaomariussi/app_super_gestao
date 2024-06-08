@@ -4,6 +4,6 @@
     <body>
         @include('app.layouts._partials.header')
         @yield('conteudo')
-    </body>
         @stack('scripts')
+    </body>
 </html>

@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
     Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
     Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato');
+});
 
 
 Route::group(['prefix' => '/fornecedor'], function () {
@@ -30,9 +31,10 @@ Route::group(['prefix' => '/produto'], function () {
     Route::get('/', [ProdutoController::class, 'index'])->name('app.produto');
     Route::get('/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.adicionar');
     Route::post('/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.salvar');
+    Route::get('/visualizar/{id}', [ProdutoController::class, 'visualizar'])->name('app.produto.visualizar');
     Route::get('/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
     Route::post('/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
-    Route::post('/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
+    Route::delete('/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
 });
 
 Route::get('produtos', [PedidoController::class, 'buscaProdutos'])->name('app.pedido.produtos');
@@ -61,8 +63,6 @@ Route::group(['prefix' => '/pedido'], function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'destroy'])->name('logout');
-
-});
 
 Route::fallback(function () {
     echo 'A rota acessada não existe.

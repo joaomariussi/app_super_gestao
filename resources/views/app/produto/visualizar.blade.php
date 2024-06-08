@@ -1,69 +1,42 @@
 @extends('app.layouts.basic')
 
-<script src="{{asset('js/libraries/jquery/jquery.js')}}"></script>
-<script src="{{ asset('js/table-produto.js') }}"></script>
-<script src="https://cdn.datatables.net/v/dt/dt-2.0.3/datatables.js"></script>
+@section('title', 'Visualizar Produto')
 
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css"/>
-<link rel="stylesheet" href="{{ asset('css/visualizar-produto.css') }}">
-
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/visualizar-produto.css') }}">
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
-
         <div class="titulo-produto">
-            <h2>Gerenciamento de Produtos</h2>
+            <h2 class="title-h2">Detalhes do Produto</h2>
         </div>
 
-        <div class="menu-produto">
-            <div class="button-wrapper">
-                <div class="button-wrapper">
-                    <button type="submit" class="button-back"
-                            onclick="window.location.href = '{{ route('site.principal') }}'">Voltar
-                    </button>
+        <a href="{{ route('app.produto') }}" class="botao-voltar">Voltar</a>
+
+        <div class="informacoes">
+            <div class="info-produto">
+                <div class="coluna-esquerda">
+                    <h3>Informações Gerais</h3>
+                    <p><strong>ID do Produto:</strong> {{ $produto->id }}</p>
+                    <p><strong>Nome:</strong> {{ $produto->nome }}</p>
+                    <p><strong>Descrição:</strong> {{ $produto->descricao }}</p>
+                    <p><strong>Código:</strong> {{ $produto->codigo }}</p>
+                    <p><strong>Unidade de Medida:</strong> {{ $produto->unidade->unidade }}</p>
+                    <p><strong>Fornecedor:</strong> {{ $produto->fornecedor->nome }}</p>
+                </div>
+                <div class="coluna-direita">
+                    <h3>Detalhes do Produto</h3>
+                    <p><strong>Preço de Venda:</strong> R$ {{ number_format($produto->preco_venda, 2, ',', '.') }}</p>
+                    <p><strong>Estoque:</strong> {{ $produto->quantidade }}</p>
+                    <p><strong>Peso:</strong> {{ $produto->peso }} kg</p>
+                    <p><strong>Largura:</strong> {{ $produto->largura }} cm</p>
+                    <p><strong>Comprimento:</strong> {{ $produto->comprimento }} cm</p>
+                    <p><strong>Altura:</strong> {{ $produto->altura }} cm</p>
+                    <p><strong>Cadastrado em:</strong> {{ $produto->created_at->format('d/m/Y H:i') }}</p>
+                    <p><strong>Última Atualização:</strong> {{ $produto->updated_at->format('d/m/Y H:i') }}</p>
                 </div>
             </div>
-            <table class="table table-striped" id="table-produtos">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome do Produto</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Preço de Venda</th>
-                    <th scope="col">Estoque Mínimo</th>
-                    <th scope="col">Estoque Máximo</th>
-                    <th scope="col">Unidade de Medida</th>
-                    <th scope="col">Largura</th>
-                    <th scope="col">Comprimento</th>
-                    <th scope="col">Altura</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse ($produtos as $produto)
-                    <tr>
-                        <th scope="row">{{ $produto->id }}</th>
-                        <td>{{ $produto->nome }}</td>
-                        <td>{{ $produto->descricao }}</td>
-                        <td>{{ $produto->peso }}</td>
-                        <td>{{ $produto->preco_venda }}</td>
-                        <td>{{ $produto->estoque_minimo }}</td>
-                        <td>{{ $produto->estoque_maximo }}</td>
-                        <td>{{ $produto->unidade_id }}</td>
-                        <td>{{ $produto->largura }}</td>
-                        <td>{{ $produto->comprimento }}</td>
-                        <td>{{ $produto->altura }}</td>
-
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="6">Nenhum produto encontrado</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
         </div>
     </div>
 @endsection
-
-

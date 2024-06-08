@@ -36,6 +36,12 @@
     box-sizing: border-box;
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
+    text-decoration: none; /* Remove a sublinhado dos links */
+    color: inherit; /* Mantém a cor do texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .dashboard-card h3 {
@@ -98,7 +104,7 @@
 .titulo-dashboard {
     padding: 70px 0 10px 0;
     margin-bottom: 10px;
-    background-color: #6cb6e2;
+    background-color: #2a9ee2;
     text-align: center;
 }
 

@@ -18,3 +18,5 @@
         </nav>
     </div>
 </div>
+
+@include('flash::message')

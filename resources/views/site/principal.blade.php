@@ -4,7 +4,6 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
-    <!-- Adicione um link ao CDN de Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 @endpush
 
@@ -15,29 +14,29 @@
         </div>
 
         <div class="dashboard-content">
-            <div class="dashboard-card dashboard-card-customers">
+            <a href="{{ route('app.cliente') }}" class="dashboard-card dashboard-card-customers">
                 <i class="fas fa-users fa-2x"></i>
                 <h3>Clientes Cadastrados</h3>
                 <p class="total-clientes">{{ $total_clientes }}</p>
-            </div>
+            </a>
 
-            <div class="dashboard-card dashboard-card-orders">
+            <a href="{{ route('app.pedido') }}" class="dashboard-card dashboard-card-orders">
                 <i class="fas fa-shopping-cart fa-2x"></i>
                 <h3>Pedidos Realizados</h3>
                 <p class="total-pedidos">{{ $total_pedidos }}</p>
-            </div>
+            </a>
 
-            <div class="dashboard-card dashboard-card-products">
+            <a href="{{ route('app.produto') }}" class="dashboard-card dashboard-card-products">
                 <i class="fas fa-box-open fa-2x"></i>
                 <h3>Produtos Cadastrados</h3>
                 <p class="total-produtos">{{ $total_produtos }}</p>
-            </div>
+            </a>
 
-            <div class="dashboard-card dashboard-card-suppliers">
+            <a href="{{ route('app.fornecedor') }}" class="dashboard-card dashboard-card-suppliers">
                 <i class="fas fa-truck fa-2x"></i>
                 <h3>Fornecedores Cadastrados</h3>
                 <p class="total-fornecedores">{{ $total_fornecedores }}</p>
-            </div>
+            </a>
         </div>
 
         <!-- Adicione uma seção de gráficos -->

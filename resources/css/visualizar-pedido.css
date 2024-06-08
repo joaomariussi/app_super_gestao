@@ -149,8 +149,8 @@ table tr:nth-child(even) {
 
 .botao-voltar {
     position: absolute;
-    top: 160px; /* Ajuste a margem superior conforme necessário */
-    left: 20px; /* Mantenha a margem esquerda */
+    top: 160px;
+    left: 20px;
     padding: 10px 20px;
     background-color: #504f4f;
     color: white;

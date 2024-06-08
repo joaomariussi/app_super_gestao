@@ -27,7 +27,7 @@ class PrincipalController extends Controller
                 'total_produtos' => $total_produtos,
                 'total_fornecedores' => $total_fornecedores
             ]);
-        } catch (Exception $e) {
+        } catch (Exception) {
             return view('site.principal', [
                 'total_pedidos' => 0,
                 'total_clientes' => 0,
