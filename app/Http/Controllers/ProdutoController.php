@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
@@ -29,7 +30,7 @@ class ProdutoController extends Controller
         }
     }
 
-    public function adicionar(Request $request): Factory|View|Application|\Illuminate\Http\RedirectResponse
+    public function adicionar(Request $request): Factory|View|Application|RedirectResponse
     {
         try {
             $unidades = UnidadeModel::all();
@@ -67,18 +68,22 @@ class ProdutoController extends Controller
     {
         try {
             // Busca o produto pelo ID
-            $produtos = ProdutoModel::find($id);
+            $produto = ProdutoModel::find($id);
 
             $unidades = UnidadeModel::all();
 
             // Verifica se o produto existe
-            if ($produtos) {
+            if ($produto) {
+                // Remove a máscara do campo preco_venda
+                $precoVenda = str_replace(['R$', '.', ','], ['', '', '.'], $request->input('preco_venda'));
+                $request->merge(['preco_venda' => $precoVenda]);
+
                 // Atualiza o produto
-                $produtos->update($request->all());
-                flash('Produto atualizado com sucesso!')->success();
+                $produto->update($request->all());
+                flash()->success('Produto atualizado com sucesso!');
                 return response()->json(
                     ['message' => 'Produto atualizado com sucesso!',
-                        'produto' => $produtos, 'unidades' => $unidades
+                        'produto' => $produto, 'unidades' => $unidades
                     ]);
             } else {
                 flash()->error('Produto não encontrado!');
@@ -94,7 +99,7 @@ class ProdutoController extends Controller
     {
         try {
             // Busca o produto pelo ID
-            $produto = ProdutoModel::find($id);
+            $produto = (new ProdutoModel)->find($id);
 
             // Verifica se o produto existe
             if (!$produto) {

@@ -11,7 +11,7 @@ class EncryptUserPasswords extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // Obtém todos os usuários
         $usuarios = DB::table('usuarios')->get();

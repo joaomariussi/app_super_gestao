@@ -39,7 +39,6 @@ class PedidoController extends Controller
     public function adicionar(Request $request): Factory|View|Application|RedirectResponse
     {
         try {
-
             $clientes = ClienteModel::all();
 
             $produtos = ProdutoModel::all();
@@ -52,7 +51,12 @@ class PedidoController extends Controller
                 // Criar o pedido sem salvar
                 $pedido = new PedidoModel();
                 $pedido->cliente_id = $dados_pedido['cliente_id'] ?? null;
-                $pedido->valor_total = str_replace('R$ ', '', $dados_pedido['valor_total'] ?? null);
+
+                // Remove o R$ e espaços do valor total
+                $valor_total = str_replace(['R$', '.', ' '], '', $dados_pedido['valor_total']);
+                $valor_total = str_replace(',', '.', $valor_total);
+
+                $pedido->valor_total = $valor_total;
                 $pedido->observacoes = $dados_pedido['observacoes'] ?? null;
 
                 // Inicializa um array para armazenar os produtos
@@ -93,18 +97,21 @@ class PedidoController extends Controller
     public function excluir($id): JsonResponse
     {
         try {
-            $pedido = PedidoModel::find($id);
+            $pedido = (new PedidoModel)->find($id);
 
             if ($pedido) {
-                // Excluir registros na tabela pedido_produtos associados ao pedido
+                // Excluí registros na tabela pedido_produtos associados ao pedido
                 PedidoProdutosModel::where('pedido_id', $id)->delete();
                 // Agora, excluir o pedido
                 $pedido->delete();
+                flash()->success('Pedido excluído com sucesso!');
                 return response()->json(['message' => 'Pedido excluído com sucesso!', 'pedido' => $pedido]);
             } else {
+                flash()->error('Pedido não encontrado!');
                 return response()->json(['error' => 'Pedido não encontrado!'], 404);
             }
         } catch (Exception $e) {
+            flash()->error('Ocorreu um erro ao excluir o pedido. Por favor, tente novamente.');
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
@@ -116,7 +123,7 @@ class PedidoController extends Controller
             $query = $request->input('query');
 
             // Lógica para buscar produtos com base na consulta do usuário
-            $produtos = ProdutoModel::where('nome', 'like', '%' . $query . '%')->get();
+            $produtos = (new ProdutoModel)->where('nome', 'like', '%' . $query . '%')->get();
 
             // Retorna os resultados da busca como um array JSON
             return response()->json($produtos);

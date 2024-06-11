@@ -30,11 +30,11 @@ class ClienteController extends Controller
     }
 
     /**
+     *  Adiciona um novo cliente
      * @param Request $request
      * @return Application|Factory|RedirectResponse|\Illuminate\View\View
-     * Adiciona um novo cliente
      */
-    public function adicionar(Request $request)
+    public function adicionar(Request $request): Factory|\Illuminate\View\View|Application|RedirectResponse
     {
         try {
             // Remove as máscaras dos campos
@@ -52,15 +52,16 @@ class ClienteController extends Controller
 
             return view('app.cliente.adicionar');
         } catch (Exception $e) {
+            flash()->error('Erro ao cadastrar o cliente!');
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
     /**
+     *  Edita um cliente
      * @param Request $request
      * @param $id
      * @return JsonResponse
-     * Edita um cliente
      */
     public function editar(Request $request, $id): JsonResponse
     {
@@ -68,8 +69,7 @@ class ClienteController extends Controller
             // Busca o cliente pelo ID
             $cliente = (new ClienteModel)->find($id);
 
-            // Verifica se o cliente existe e se a requisição é do tipo POST
-            if ($request->isMethod('post') || $cliente) {
+            if ($cliente) {
                 $data = $request->except('_token');
 
                 // Remove as máscaras dos campos
@@ -80,19 +80,22 @@ class ClienteController extends Controller
                 // Atualiza os dados no banco de dados
                 $cliente->update($data);
 
+                flash()->success('Cliente atualizado com sucesso!');
                 return response()->json(['message' => 'Cliente atualizado com sucesso!']);
             } else {
-                return response()->json(['error' => 'Cliente não encontrado!]'], 405);
+                flash()->error('Cliente não encontrado!');
+                return response()->json(['error' => 'Cliente não encontrado!'], 405);
             }
         } catch (Exception $e) {
+            flash()->error('Erro ao atualizar o cliente!');
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
     /**
+     *  Exclui um cliente
      * @param $id
      * @return JsonResponse
-     * Exclui um cliente
      */
     public function excluir($id): JsonResponse
     {
@@ -101,29 +104,38 @@ class ClienteController extends Controller
             $cliente = (new ClienteModel)->find($id);
 
             // Verifica se o cliente existe
-            if ($cliente) {
-
-                // Exclui o cliente do banco de dados
-                $cliente->delete();
-                return response()->json(['message' => 'Cliente excluído com sucesso!']);
-            } else {
+            if (!$cliente) {
+                flash()->error('Cliente não encontrado!');
                 return response()->json(['error' => 'Cliente não encontrado!'], 404);
             }
+
+            // Verifica se o cliente possui pedidos vinculados
+            if ($cliente->pedido()->exists()) {
+                flash()->error('Cliente não pode ser excluído, pois possui pedidos vinculados!');
+                return response()->json(['error' => 'Cliente não pode ser excluído, pois possui pedidos vinculados!'], 405);
+            }
+
+            // Exclui o cliente do banco de dados
+            $cliente->delete();
+            flash()->success('Cliente excluído com sucesso!');
+            return response()->json(['message' => 'Cliente excluído com sucesso!']);
+
         } catch (Exception $e) {
+            flash()->error('Erro ao excluir o cliente!');
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
     /**
+     *  Verifica se um CPF já está cadastrado
      * @param Request $request
      * @return JsonResponse
-     * Verifica se um CPF já está cadastrado
      */
     public function verificaCpf(Request $request): JsonResponse
     {
         try {
             $cpf = $request->cpf;
-            $cliente = ClienteModel::where('cpf', $cpf)->exists();
+            $cliente = (new ClienteModel)->where('cpf', $cpf)->exists();
             return response()->json(['existe' => $cliente]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -131,15 +143,15 @@ class ClienteController extends Controller
     }
 
     /**
+     *  Verifica se um e-mail já está cadastrado
      * @param Request $request
      * @return JsonResponse
-     * Verifica se um e-mail já está cadastrado
      */
     public function verificaEmail(Request $request): JsonResponse
     {
         try {
             $email = $request->email;
-            $cliente = ClienteModel::where('email', $email)->exists();
+            $cliente = (new ClienteModel)->where('email', $email)->exists();
             return response()->json(['existe' => $cliente]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
