@@ -165,7 +165,7 @@
         function excluirFornecedor(id) {
             if (confirm('Deseja realmente excluir este fornecedor?')) {
                 $.ajax({
-                    type: 'POST',
+                    type: 'DELETE',
                     url: '/fornecedor/excluir/' + id,
                     data: {
                         id: id,

@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Criando as mensagens ao fazer uma ação.&#10;&#10;- Ajustando as notificações flash no Cliente Controller.&#10;&#10;- Ajustando as notificações flash no Fornecedor Controller.&#10;&#10;- Ajustando as notificações flash no Pedido Controller.&#10;&#10;- Ajustando as notificações flash no Produto Controller.">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" afterDir="false" />
+    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Ajustes nos relacionamentos das Models.&#10;&#10;- Cliente o relacionamento de pedido na Model do Cliente.&#10;&#10;- Fazendo o mesmo processo para a model de Fornecedor.&#10;&#10;- Ajustes nos Scripts.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FornecedorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FornecedorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PedidoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PedidoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProdutoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProdutoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ClienteModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClienteModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/FornecedorModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/FornecedorModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PedidoProdutosModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PedidoProdutosModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_02_124949_encrypt_user_passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_06_10_172226_encrypt_user_passwords.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/scripts-mascaras.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts-mascaras.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/scripts-mascaras.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/scripts-mascaras.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/cliente/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/cliente/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/fornecedor/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/fornecedor/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -290,7 +284,7 @@
       <workItem from="1717941494873" duration="7328000" />
       <workItem from="1718050010181" duration="9933000" />
       <workItem from="1718101813392" duration="259000" />
-      <workItem from="1718129484433" duration="3503000" />
+      <workItem from="1718129484433" duration="4543000" />
     </task>
     <task id="LOCAL-00001" summary=":rocket: Criando algumas migrations">
       <option name="closed" value="true" />
@@ -492,7 +486,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718145046332</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary=":rocket: Ajustes nos relacionamentos das Models.&#10;&#10;- Cliente o relacionamento de pedido na Model do Cliente.&#10;&#10;- Fazendo o mesmo processo para a model de Fornecedor.&#10;&#10;- Ajustes nos Scripts.">
+      <option name="closed" value="true" />
+      <created>1718145190947</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145190947</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value=":rocket: Criando algumas migrations" />
     <MESSAGE value=":rocket: Criando o módulo de clientes.&#10;&#10;- Criando a view de index.clientes e o css&#10;&#10;- Criando o controller e a model de clientes&#10;&#10;- Criando o scripts da DataTable de clientes" />
     <MESSAGE value=":rocket: Criando o controller de PedidoController&#10;&#10;- Criando o PedidoModel&#10;&#10;- Criando o PedidoProdutoController&#10;&#10;- Criando o PedidoProdutoModel" />
     <MESSAGE value=":rocket: Outros ajustes nas estilizações, views e dependências." />
@@ -525,7 +526,8 @@
     <MESSAGE value=":rocket: Ajustes gerais.&#10;&#10;- Instalando o pacote de mensagens do Flash e fazendo as devidas validações no backend, além de incluir a mensagem no mmeu header.&#10;&#10;- Criando um stack para os scripts que ficam no head da página.&#10;&#10;- Ajustando a rota de exclusão de um produto e alterando o controller para o funcionamento correto.&#10;&#10;- Ajustando alguns CSS nas views." />
     <MESSAGE value=":lipstick: Ajustes nas Views e estilização CSS.&#10;&#10;- Ajustando a estrutura das Views.&#10;&#10;- Melhorando o CSS." />
     <MESSAGE value=":rocket: Criando as mensagens ao fazer uma ação.&#10;&#10;- Ajustando as notificações flash no Cliente Controller.&#10;&#10;- Ajustando as notificações flash no Fornecedor Controller.&#10;&#10;- Ajustando as notificações flash no Pedido Controller.&#10;&#10;- Ajustando as notificações flash no Produto Controller." />
-    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Criando as mensagens ao fazer uma ação.&#10;&#10;- Ajustando as notificações flash no Cliente Controller.&#10;&#10;- Ajustando as notificações flash no Fornecedor Controller.&#10;&#10;- Ajustando as notificações flash no Pedido Controller.&#10;&#10;- Ajustando as notificações flash no Produto Controller." />
+    <MESSAGE value=":rocket: Ajustes nos relacionamentos das Models.&#10;&#10;- Cliente o relacionamento de pedido na Model do Cliente.&#10;&#10;- Fazendo o mesmo processo para a model de Fornecedor.&#10;&#10;- Ajustes nos Scripts." />
+    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Ajustes nos relacionamentos das Models.&#10;&#10;- Cliente o relacionamento de pedido na Model do Cliente.&#10;&#10;- Fazendo o mesmo processo para a model de Fornecedor.&#10;&#10;- Ajustes nos Scripts." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -205,7 +205,7 @@
         function excluirCliente(id) {
             if (confirm('Deseja realmente excluir este cliente?')) {
                 $.ajax({
-                    type: 'POST',
+                    type: 'DELETE',
                     url: '/cliente/excluir/' + id,
                     data: {
                         id: id,

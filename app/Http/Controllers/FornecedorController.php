@@ -74,6 +74,10 @@ class FornecedorController extends Controller
         }
     }
 
+    /**
+     * Exclui um fornecedor
+     * @throws Exception
+     */
     public function excluir($id): JsonResponse
     {
         try {

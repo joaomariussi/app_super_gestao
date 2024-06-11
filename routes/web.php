@@ -23,8 +23,8 @@ Route::group(['prefix' => '/fornecedor'], function () {
     Route::get('/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
     Route::post('/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.salvar');
     Route::get('/editar/{id}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
-    Route::post('/editar/{id}', [FornecedorController::class, 'atualizar'])->name('app.fornecedor.atualizar');
-    Route::post('/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
+    Route::post('/editar/{id}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
+    Route::delete('/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
 });
 
 Route::group(['prefix' => '/produto'], function () {
@@ -44,8 +44,8 @@ Route::group(['prefix' => '/cliente'], function () {
     Route::get('/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.adicionar');
     Route::post('/adicionar', [ClienteController::class, 'adicionar'])->name('app.cliente.salvar');
     Route::get('/editar/{id}', [ClienteController::class, 'editar'])->name('app.cliente.editar');
-    Route::post('/editar/{id}', [ClienteController::class, 'atualizar'])->name('app.cliente.atualizar');
-    Route::post('/excluir/{id}', [ClienteController::class, 'excluir'])->name('app.cliente.excluir');
+    Route::post('/editar/{id}', [ClienteController::class, 'editar'])->name('app.cliente.editar');
+    Route::delete('/excluir/{id}', [ClienteController::class, 'excluir'])->name('app.cliente.excluir');
 });
 
 Route::post('/verifica-cpf', [ClienteController::class, 'verificaCpf'])->name('app.cliente.verifica-cpf');
