@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class EncryptUserPasswords extends Migration
+class EncryptSenhaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -34,6 +34,6 @@ class EncryptUserPasswords extends Migration
      */
     public function down()
     {
-
+        //
     }
 }

@@ -27,13 +27,12 @@ class CreateClientesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::dropIfExists('clientes');
+
+        Schema::enableForeignKeyConstraints();
     }
 }

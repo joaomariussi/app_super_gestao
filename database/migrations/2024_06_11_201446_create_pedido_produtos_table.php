@@ -24,23 +24,18 @@ class CreatePedidoProdutosTable extends Migration
             $table->decimal('valor', 10, 2);
             $table->timestamps();
 
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('pedido_id')->references('id')->on('pedidos');
-            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('pedidos');
-        Schema::dropIfExists('clientes');
+
         Schema::dropIfExists('pedido_produtos');
+
         Schema::enableForeignKeyConstraints();
     }
 }
