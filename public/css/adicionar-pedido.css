@@ -172,13 +172,6 @@ select, textarea, button {
     border: 1px solid #ccc;
 }
 
-.titulo-pedido {
-    padding: 70px 0 10px 0;
-    margin-bottom: 10px;
-    background-color: #2a9ee2;
-    text-align: center;
-}
-
 .select_cliente {
     width: 50%;
     padding: 10px 15px;

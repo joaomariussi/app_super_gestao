@@ -45,9 +45,10 @@ body {
 }
 
 .titulo-pagina {
-    padding: 80px 0 10px;
-    background-color: #2a9ee2;
-    color: white;
+    padding: 70px 0 10px 0;
+    margin-bottom: 10px;
+    background-color: #55b6f0;
+    text-align: center;
 }
 
 .informacao-pagina p {

@@ -1,14 +1,16 @@
 @extends('app.layouts.basic')
 
-@section('titulo', $titulo)
+@section('title', 'Contato')
 
-<link rel="stylesheet" href="{{ asset('css/contato.css') }}">
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/contato.css') }}">
+@endpush
 
 @section('conteudo')
 
     <div class="conteudo-contato">
         <div class="titulo-pagina">
-            <h1>Entre em contato conosco</h1>
+            <h2 class="title-h2">Entre em contato conosco</h2>
         </div>
 
         <div class="informacao-pagina">

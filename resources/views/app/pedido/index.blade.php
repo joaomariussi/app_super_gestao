@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css">
 @endpush
 
-@push('scripts')
+@push('head-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/table-pedidos.js') }}"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/table-pedidos.js') }}"></script>
 @endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
-        <div class="titulo-pedido">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Pedidos</h2>
         </div>
-
         <div class="menu-pedido">
             <div class="button-wrapper">
                 <a href="{{ route('app.pedido.adicionar') }}" class="button-add">Novo Pedido</a>
@@ -74,17 +76,31 @@
                     },
                     dataType: 'json',
                     success: function (response) {
-                        console.log(response.message);
-                        setTimeout(function () {
-                            location.reload();
-                        }, 1000);
+                        window.location.href = '{{ route("app.pedido") }}';
                     },
                     error: function (xhr, status, error) {
-                        console.error(error);
+                        window.location.href = '{{ route("app.pedido") }}';
                     }
                 });
             }
         }
+
+        $(document).ready(function(){
+            // Espera a página carregar completamente
+            setTimeout(function(){
+                // Verifica se há uma mensagem flash
+                if($('.alert').length > 0){
+                    // Mostra a mensagem flash
+                    $('.alert').slideDown();
+                    // Define um tempo para esconder a mensagem flash após 5 segundos
+                    setTimeout(function(){
+                        $('.alert').slideUp();
+                    }, 4000);
+                }
+            }, 1000); // Aguarda 1 segundo antes de verificar a existência da mensagem flash
+        });
     </script>
+
+    @include('app.layouts._partials.footer')
 
 @endsection

@@ -9,7 +9,7 @@
 
 @section('conteudo')
     <div class="dashboard-container">
-        <div class="titulo-dashboard">
+        <div class="titulo-pagina">
             <h3 class="title-h3">Bem-vindo(a) ao seu painel de controle!</h3>
         </div>
 

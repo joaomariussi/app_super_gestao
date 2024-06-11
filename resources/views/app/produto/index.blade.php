@@ -9,6 +9,8 @@
 
 @push('head-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 @endpush
 
@@ -18,7 +20,7 @@
 
 @section('conteudo')
     <div class="conteudo-pagina">
-        <div class="titulo-produto">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Produtos</h2>
         </div>
         <div class="menu-produto">
@@ -59,10 +61,13 @@
                                     Visualizar
                                 </a>
                                 <button type="button" class="button-edit"
-                                        onclick="openModalForEdit('{{ $produto->id }}', '{{ $produto->id_fornecedor }}', '{{ $produto->unidade_id }}',
-                                        '{{ $produto->nome }}', '{{ $produto->codigo }}', '{{ $produto->descricao }}', '{{ $produto->peso }}',
-                                        '{{ $produto->preco_venda }}', '{{ $produto->quantidade }}', '{{ $produto->largura }}',
-                                        '{{ $produto->comprimento }}', '{{ $produto->altura }}')">Editar
+                                        onclick="openModalForEdit('{{ $produto->id }}', '{{ $produto->id_fornecedor }}',
+                                        '{{ $produto->unidade_id }}',
+                                        '{{ $produto->nome }}', '{{ $produto->codigo }}', '{{ $produto->descricao }}',
+                                        '{{ $produto->peso }}','{{ number_format($produto->preco_venda, 2, ',', '.') }}',
+                                        '{{ $produto->quantidade }}', '{{ $produto->largura }}','{{ $produto->comprimento }}',
+                                        '{{ $produto->altura }}')">
+                                    Editar
                                 </button>
 
                                 <button type="button" class="button-delete"
@@ -117,7 +122,8 @@
             </div>
             <div class="form-group">
                 <label for="preco_venda" class="preco-venda-label">Preço de Venda</label>
-                <input type="text" name="preco_venda" class="preco-venda-modal" placeholder="Preço de Venda" required>
+                <input type="text" step="any" name="preco_venda" placeholder="R$ 0,00" id="preco_venda"
+                       class="preco-venda-modal" required>
             </div>
             <div class="form-group">
                 <label for="quantidade" class="quantidade-label">Quantidade</label>
@@ -150,13 +156,23 @@
             document.getElementsByName('codigo')[0].value = codigo;
             document.getElementsByName('descricao')[0].value = descricao;
             document.getElementsByName('peso')[0].value = peso;
-            document.getElementsByName('preco_venda')[0].value = preco_venda;
             document.getElementsByName('quantidade')[0].value = quantidade;
             document.getElementsByName('largura')[0].value = largura;
             document.getElementsByName('comprimento')[0].value = comprimento;
             document.getElementsByName('altura')[0].value = altura;
-
             document.getElementById('modal-produto').style.display = 'block';
+
+            // Formata o valor para duas casas decimais e substitui ponto por vírgula
+            document.getElementsByName('preco_venda')[0].value = preco_venda.replace('.', ',');
+
+            // Aplica a máscara ao campo de preço de venda
+            $('#preco_venda').maskMoney({
+                prefix: 'R$ ',
+                allowNegative: false,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: true
+            }).maskMoney('mask');
         }
 
         document.getElementsByName('id_fornecedor')[0].addEventListener('change', function () {
@@ -258,4 +274,6 @@
             }, 1000); // Aguarda 1 segundo antes de verificar a existência da mensagem flash
         });
     </script>
+
+    @include('app.layouts._partials.footer')
 @endsection

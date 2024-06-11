@@ -7,21 +7,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
 @endpush
 
-@push('scripts')
+@push('head-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="{{ asset('js/scripts-mascaras.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/scripts-mascaras.js') }}"></script>
 @endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
-
-        <div class="titulo-fornecedor">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Produtos</h2>
         </div>
-
         <div class="informacao-pagina-produtos">
             @if (session('success'))
                 <div class="alert-success">
@@ -40,7 +41,6 @@
                     <input class="input-nome-produto" type="text" id="nome" name="nome"
                            placeholder="Nome do Produto" required>
                 </div>
-
                 <div class="form-group">
                     <select name="id_fornecedor" class="select_fornecedor" required>
                         <option value="">Selecione o Fornecedor</option>
@@ -98,10 +98,10 @@
                     </select>
                 </div>
 
-                <button type="submit" class="button-add">Cadastrar</button>
-                <button type="button" onclick="window.location.href='{{ route('app.produto') }}'"
-                        class="button-back">Voltar
-                </button>
+                <div class="button-wrapper">
+                    <button type="submit" class="button-add">Cadastrar</button>
+                    <a href="{{ route('app.produto') }}" class="button-back">Voltar</a>
+                </div>
             </form>
         </div>
     </div>

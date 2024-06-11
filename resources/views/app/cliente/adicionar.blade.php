@@ -6,20 +6,20 @@
     <link rel="stylesheet" href="{{asset('css/adicionar-cliente.css')}}">
 @endpush
 
+@push('head-scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+@endpush
+
 @push('scripts')
     <script src="{{asset('js/scripts-mascaras.js')}}"></script>
 @endpush
 
-{{-- Adiciona o jQuery e o plugin jQuery Mask--}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
 @section('conteudo')
     <div class="conteudo-pagina">
-        <div class="titulo-cliente">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Clientes</h2>
         </div>
-
         <div class="informacao-pagina-cliente">
             @if (session('success'))
                 <div class="alert-success">
@@ -68,10 +68,11 @@
                     <input type="text" name="cidade" placeholder="Cidade" class="input-cidade-cliente" required>
                 </div>
 
-                <button type="submit" class="button-add">Cadastrar</button>
-                <button type="button" onclick="window.location.href='{{ route('app.cliente.salvar') }}'"
-                        class="button-back">Voltar
-                </button>
+                <div class="button-wrapper">
+                    <button type="submit" class="button-add">Cadastrar</button>
+                    <a href="{{ route('app.cliente') }}" class="button-back">Voltar</a>
+                </div>
+
             </form>
         </div>
     </div>
@@ -131,5 +132,4 @@
             });
         });
     </script>
-
 @endsection

@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="{{ asset('css/index-fornecedor.css') }}">
 @endpush
 
-@push('scripts')
+@push('head-scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/table-fornecedor.js') }}"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/table-fornecedor.js') }}"></script>
 @endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
-
-        <div class="titulo-fornecedor">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Fornecedores</h2>
         </div>
 
         <div class="menu-fornecedor">
             <div class="button-wrapper">
                 <button type="submit" class="button-add"
-                        onclick="window.location.href = '{{ route('app.fornecedor.salvar') }}'">Novo Fornecedor
+                        onclick="window.location.href = '{{ route('app.fornecedor.adicionar') }}'">Novo Fornecedor
                 </button>
 
                 <div class="button-wrapper">
@@ -42,7 +44,8 @@
                     <th scope="col">Site</th>
                     <th scope="col">UF</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Última atualização</th>
+                    <th scope="col">Criado em:</th>
+                    <th scope="col">Atualizado em:</th>
                     <th scope="col">Opções</th>
                 </tr>
                 </thead>
@@ -54,6 +57,7 @@
                         <td>{{ $fornecedor->site }}</td>
                         <td>{{ $fornecedor->uf }}</td>
                         <td>{{ $fornecedor->email }}</td>
+                        <td>{{ Carbon::parse($fornecedor->created_at)->format('d/m/Y H:i:s') }}</td>
                         <td>{{ Carbon::parse($fornecedor->updated_at)->format('d/m/Y H:i:s') }}</td>
                         <td>
                             <form class="form-group" id="form-editar-fornecedor-{{ $fornecedor->id }}"
@@ -63,9 +67,9 @@
                                 @method('DELETE')
                                 <input type="hidden" name="fornecedor_id" value="{{ $fornecedor->id }}">
                                 <button type="button" class="button-edit"
-                                        onclick="openModalForEdit('{{ $fornecedor->nome }}', '{{ $fornecedor->site }}',
-                                            '{{ $fornecedor->uf }}',
-                                        '{{ $fornecedor->email }}')">Editar
+                                        onclick="openModalForEdit('{{ $fornecedor->id }}', '{{ $fornecedor->nome }}',
+                                         '{{ $fornecedor->site }}', '{{ $fornecedor->uf }}', '{{ $fornecedor->email }}')">
+                                    Editar
                                 </button>
                                 <button type="button" class="button-delete"
                                         onclick="excluirFornecedor('{{ $fornecedor->id }}')">Excluir
@@ -110,7 +114,8 @@
     </div>
 
     <script>
-        function openModalForEdit(nome, site, uf, email) {
+        function openModalForEdit(id, nome, site, uf, email) {
+            document.getElementsByName('fornecedor_id')[0].value = id;
             document.getElementById('editNome').value = nome;
             document.getElementById('editSite').value = site;
             document.getElementById('editUF').value = uf;
@@ -168,21 +173,31 @@
                     },
                     dataType: 'json', // Define o tipo de retorno
                     success: function (response) {
-                        console.log(response.message);
-                        // Destroi a instância atual do DataTables
-                        $('#table-fornecedores').DataTable().destroy();
-                        // Recarrega a página após 1 segundo
-                        setTimeout(function () {
-                            location.reload();
-                        }, 1000);
+                        window.location.href = '{{ route("app.fornecedor") }}';
                     },
                     error: function (xhr, status, error) {
-                        console.error(error);
+                        window.location.href = '{{ route("app.fornecedor") }}';
                     }
                 });
             }
         }
+
+        $(document).ready(function(){
+            // Espera a página carregar completamente
+            setTimeout(function(){
+                // Verifica se há uma mensagem flash
+                if($('.alert').length > 0){
+                    // Mostra a mensagem flash
+                    $('.alert').slideDown();
+                    // Define um tempo para esconder a mensagem flash após 5 segundos
+                    setTimeout(function(){
+                        $('.alert').slideUp();
+                    }, 4000);
+                }
+            }, 1000); // Aguarda 1 segundo antes de verificar a existência da mensagem flash
+        });
     </script>
 
+    @include('app.layouts._partials.footer')
 @endsection
 

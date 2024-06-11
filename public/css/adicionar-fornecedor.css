@@ -1,7 +1,7 @@
 select, textarea, button {
     width: 100%;
     padding: 10px 15px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
     box-sizing: border-box;
     border-radius: 3px;
     background-color: transparent;
@@ -21,48 +21,47 @@ select, textarea, button {
     opacity: 1;
 }
 
-.conteudo-destaque {
-    width: 100%;
-    height: 100%;
-    min-height: 800px;
-}
-
 .conteudo-pagina {
-    width: 100%;
     height: 100%;
     text-align: center;
 }
 
 .informacao-pagina {
     max-width: 1200px;
-    margin: 20px auto; /* Define a margem superior e inferior como 20px e as laterais como automáticas para centralizar */
+    margin: 20px auto;
     background-color: #fff;
-}
-
-.botoes-navegacao {
-    margin: 20px 0;
 }
 
 .form-add-fornecedor {
     width: 100%;
     margin: 20px 0;
-    padding: 10px 20px;
+    padding: 30px 20px;
     border-radius: 8px;
+}
 
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-add, .button-back {
+    width: 150px;
+    margin: 10px 0;
 }
 
 .button-add {
-    width: 50%;
     background-color: #4CAF50;
     border: none;
     color: white;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 8px;
+    width: 50%;
 }
 
 .button-add:hover {
@@ -70,17 +69,17 @@ select, textarea, button {
 }
 
 .button-back {
-    width: 50%;
     background-color: #414141;
     border: none;
     color: white;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 8px;
+    width: 47%;
 }
 
 .button-back:hover {
@@ -129,13 +128,6 @@ select, textarea, button {
     background-color: transparent;
     color: #333;
     border: 1px solid #ccc;
-}
-
-.titulo-fornecedor {
-    padding: 70px 0 10px 0;
-    margin-bottom: 10px;
-    background-color: #2a9ee2;
-    text-align: center;
 }
 
 .alert-success {

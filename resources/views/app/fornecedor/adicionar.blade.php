@@ -1,16 +1,16 @@
 @extends('app.layouts.basic')
 
-<link rel="stylesheet" href="{{asset('css/adicionar-fornecedor.css')}}">
-
 @section('title', 'Novo Fornecedor')
+
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/adicionar-fornecedor.css')}}">
+@endpush
 
 @section('conteudo')
     <div class="conteudo-pagina">
-
-        <div class="titulo-fornecedor">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Fornecedores</h2>
         </div>
-
         <div class="informacao-pagina-fornecedor">
             @if (session('success'))
                 <div class="alert-success">
@@ -41,12 +41,11 @@
                     <input type="text" name="email" placeholder="E-mail" class="input-email-fornecedor" required>
                 </div>
 
-                <button type="submit" class="button-add">Cadastrar</button>
-                <button type="button" onclick="window.location.href='{{ route('app.fornecedor') }}'"
-                        class="button-back">Voltar
-                </button>
+                <div class="button-wrapper">
+                    <button type="submit" class="button-add">Cadastrar</button>
+                    <a href="{{ route('app.fornecedor') }}" class="button-back">Voltar</a>
+                </div>
             </form>
         </div>
     </div>
-
 @endsection

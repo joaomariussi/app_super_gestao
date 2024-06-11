@@ -18,8 +18,7 @@
 
 @section('conteudo')
     <div class="conteudo-pagina">
-
-        <div class="titulo-pedido">
+        <div class="titulo-pagina">
             <h2 class="title-h2">Gerenciamento de Pedidos</h2>
         </div>
 
