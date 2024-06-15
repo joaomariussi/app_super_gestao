@@ -138,4 +138,23 @@ class ProdutoController extends Controller
             return view('app.produto.index', ['message' => $e->getMessage()]);
         }
     }
+
+    public function verificaEstoque(Request $request, $id): JsonResponse
+    {
+        try {
+            $quantidadeSelecionada = $request->input('quantidade');
+
+            $produto = (new ProdutoModel)->findOrFail($id);
+
+            if ($quantidadeSelecionada > $produto->quantidade) {
+                flash()->error('Produto' . $produto->nome . ' não possui quantidade suficiente em estoque!');
+                return response()->json(['error' => 'Quantidade indisponível!'], 422);
+            }
+
+            return response()->json(['message' => 'Quantidade disponível!']);
+
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

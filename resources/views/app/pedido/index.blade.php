@@ -32,10 +32,9 @@
                 <tr>
                     <th>ID Pedido</th>
                     <th>Nome do Cliente</th>
-                    <th>Qtd Total</th>
+                    <th>Quantidade Total</th>
                     <th>Valor Total R$</th>
                     <th>Data do Pedido</th>
-                    <th>Última Atualização</th>
                     <th>Opções</th>
                 </tr>
                 </thead>
@@ -47,7 +46,6 @@
                         <td>{{ $pedido->quantidade_total }} un</td>
                         <td>R$ {{ number_format($pedido->valor_total, 2, ',', '.') }}</td>
                         <td>{{ date('d/m/Y H:i', strtotime($pedido->created_at)) }}</td>
-                        <td>{{ date('d/m/Y H:i', strtotime($pedido->updated_at)) }}</td>
                         <td>
                             <form class="form-group" method="post" action="{{ route('app.pedido.excluir', $pedido->id) }}">
                                 @csrf

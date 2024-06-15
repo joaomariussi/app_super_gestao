@@ -7,6 +7,7 @@ use App\Models\PedidoModel;
 use App\Models\PedidoProdutosModel;
 use App\Models\ProdutoModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use DB;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -40,11 +41,9 @@ class PedidoController extends Controller
     {
         try {
             $clientes = ClienteModel::all();
-
             $produtos = ProdutoModel::all();
 
             if ($request->input('_token') != '') {
-
                 $request->session()->put('dados_pedido', $request->all());
                 $dados_pedido = $request->session()->get('dados_pedido');
 
@@ -55,36 +54,61 @@ class PedidoController extends Controller
                 // Remove o R$ e espaços do valor total
                 $valor_total = str_replace(['R$', '.', ' '], '', $dados_pedido['valor_total']);
                 $valor_total = str_replace(',', '.', $valor_total);
-
                 $pedido->valor_total = $valor_total;
                 $pedido->observacoes = $dados_pedido['observacoes'] ?? null;
 
                 // Inicializa um array para armazenar os produtos
                 $pedido_produtos = [];
 
-                foreach ($dados_pedido['produtos'] as $produto) {
-                    $pedido_produto = new PedidoProdutosModel();
-                    // Não definir o pedido_id aqui
-                    $pedido_produto->produto_id = $produto['id_produto'];
-                    $pedido_produto->cliente_id = $dados_pedido['cliente_id'];
-                    $pedido_produto->nome = $produto['nome_produto'];
-                    $pedido_produto->codigo = $produto['codigo_produto'];
-                    $pedido_produto->quantidade = $produto['quantidade'];
-                    $pedido_produto->valor = $produto['valor'];
+                // Inicia uma transação de banco de dados
+                DB::beginTransaction();
 
-                    // Adiciona o pedido_produto ao array
-                    $pedido_produtos[] = $pedido_produto;
+                try {
+                    foreach ($dados_pedido['produtos'] as $produto) {
+                        $produtoModel = (new ProdutoModel)->find($produto['id_produto']);
+
+                        if ($produtoModel->quantidade < $produto['quantidade']) {
+                            flash()->error('Produto ' . $produto['nome_produto'] . ' sem estoque suficiente!');
+                            // Se não houver estoque suficiente, lança uma exceção
+                            throw new Exception('Produto ' . $produto['nome_produto'] . ' sem estoque suficiente!');
+                        }
+
+                        // Diminui a quantidade do produto
+                        $produtoModel->quantidade -= $produto['quantidade'];
+                        $produtoModel->save();
+
+                        // Cria o PedidoProdutosModel
+                        $pedido_produto = new PedidoProdutosModel();
+                        $pedido_produto->produto_id = $produto['id_produto'];
+                        $pedido_produto->cliente_id = $dados_pedido['cliente_id'];
+                        $pedido_produto->nome = $produto['nome_produto'];
+                        $pedido_produto->codigo = $produto['codigo_produto'];
+                        $pedido_produto->quantidade = $produto['quantidade'];
+                        $pedido_produto->valor = $produto['valor'];
+
+                        // Adiciona o pedido_produto ao array
+                        $pedido_produtos[] = $pedido_produto;
+                    }
+
+                    // Salva o pedido primeiro para obter o ID
+                    $pedido->save();
+
+                    // Salva os produtos do pedido
+                    foreach ($pedido_produtos as $pedido_produto) {
+                        $pedido_produto->pedido_id = $pedido->id;
+                        $pedido_produto->save();
+                    }
+
+                    // Confirma a transação
+                    DB::commit();
+
+                    return redirect()->route('app.pedido.adicionar')->with('success', 'Pedido cadastrado com sucesso!');
+
+                } catch (Exception $e) {
+                    // Desfaz a transação em caso de erro
+                    DB::rollBack();
+                    return redirect()->back()->with('error', $e->getMessage());
                 }
-
-                // Salva o pedido primeiro para obter o ID
-                $pedido->save();
-
-                // Salva os produtos do pedido
-                foreach ($pedido_produtos as $pedido_produto) {
-                    $pedido_produto->pedido_id = $pedido->id;
-                    $pedido_produto->save();
-                }
-                return redirect()->route('app.pedido.adicionar')->with('success', 'Pedido cadastrado com sucesso!');
             }
 
             return view('app.pedido.adicionar', compact('clientes', 'produtos'));

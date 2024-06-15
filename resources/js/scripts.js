@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         option.value = produto.id;
                         option.dataset.preco_venda = produto.preco_venda;
                         option.dataset.codigo = produto.codigo;
+                        option.dataset.quantidade = produto.quantidade;
                         select.appendChild(option);
                     });
                 }
@@ -164,12 +165,23 @@ document.addEventListener('DOMContentLoaded', function () {
         var selectedProductId = select.value;
         var selectedProductName = select.options[select.selectedIndex].text;
         var selectedProductCode = select.options[select.selectedIndex].dataset.codigo;
+        var selectedProductStock = parseInt(select.options[select.selectedIndex].dataset.quantidade); // Quantidade disponível do produto
 
         var quantidadeInput = document.getElementById('quantidade');
         var quantidade = quantidadeInput.value;
 
         if (quantidade === '') {
             alert('Selecione uma quantidade para o produto.');
+            return;
+        }
+
+        if (isNaN(quantidade) || parseInt(quantidade) <= 0) {
+            alert('A quantidade deve ser um número inteiro positivo.');
+            return;
+        }
+
+        if (quantidade > selectedProductStock) {
+            alert('A quantidade selecionada excede o estoque disponível.');
             return;
         }
 

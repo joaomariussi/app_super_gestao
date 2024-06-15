@@ -49,7 +49,7 @@
                     <tr>
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->codigo }}</td>
-                        <td>{{ $produto->quantidade }}</td>
+                        <td>{{ $produto->quantidade }} un</td>
                         <td>R$ {{ number_format($produto->preco_venda, 2, ',', '.') }}</td>
                         <td>
                             <form class="form-group" id="form-editar-produto-{{ $produto->id }}"

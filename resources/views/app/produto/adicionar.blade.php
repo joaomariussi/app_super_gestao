@@ -71,21 +71,21 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="peso" placeholder="Peso" class="input-peso-produto" required>
+                    <input type="number" step="any" name="peso" placeholder="Peso (g)" class="input-peso-produto" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="largura" placeholder="Largura"
+                    <input type="number" step="any" name="largura(cm)" placeholder="Largura (cm)"
                            class="input-largura" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="comprimento" placeholder="Comprimento"
+                    <input type="number" step="any" name="comprimento" placeholder="Comprimento (cm)"
                            class="input-comprimento" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="number" step="any" name="altura" placeholder="Altura"
+                    <input type="number" step="any" name="altura" placeholder="Altura (cm)"
                            class="input-altura" required>
                 </div>
 
@@ -105,4 +105,21 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            // Espera a página carregar completamente
+            setTimeout(function(){
+                // Verifica se há uma mensagem flash
+                if($('.alert').length > 0){
+                    // Mostra a mensagem flash
+                    $('.alert').slideDown();
+                    // Define um tempo para esconder a mensagem flash após 5 segundos
+                    setTimeout(function(){
+                        $('.alert').slideUp();
+                    }, 4000);
+                }
+            }, 1000); // Aguarda 1 segundo antes de verificar a existência da mensagem flash
+        });
+    </script>
 @endsection

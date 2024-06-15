@@ -35,6 +35,7 @@ Route::group(['prefix' => '/produto'], function () {
     Route::get('/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
     Route::post('/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
     Route::delete('/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
+    Route::get('{id}/verificar-estoque', [ProdutoController::class, 'verificaEstoque'])->name('produto.verificar-estoque');
 });
 
 Route::get('produtos', [PedidoController::class, 'buscaProdutos'])->name('app.pedido.produtos');
