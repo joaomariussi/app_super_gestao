@@ -1,5 +1,8 @@
 <?php
 
+
+use Database\Seeders\UnidadesSeeder;
+use Database\Seeders\UsuariosSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -9,8 +12,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // $this->call(UsersTableSeeder::class);
+//        $this->call(UsuariosSeeder::class);
+
+        $this->call(UnidadesSeeder::class);
     }
 }

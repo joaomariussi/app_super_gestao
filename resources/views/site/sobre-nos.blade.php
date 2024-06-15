@@ -1,6 +1,6 @@
 @extends('app.layouts.basic')
 
-@section('titulo', $titulo)
+@section('title', 'Sobre Nós')
 
 <link rel="stylesheet" href="{{ asset('css/sobre-nos.css') }}">
 
@@ -8,7 +8,7 @@
 
     <div class="conteudo-sobre-nos">
         <div class="titulo-pagina">
-            <h1>Olá, eu sou o Super Gestão</h1>
+            <h2 class="title-h2">Olá, eu sou o Super Gestão</h2>
         </div>
 
         <div class="informacao-pagina">

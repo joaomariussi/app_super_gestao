@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Ajustes nas rotas e nos métodos de exclusão.">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2024_06_11_195535_create_produtos_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2024_06_11_201446_create_pedido_produtos_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2024_06_11_202158_encrypt_senha_table.php" afterDir="false" />
+    <list default="true" id="f8c9cb94-46a9-4ed2-8767-802b379b5cee" name="Changes" comment=":rocket: Ajustes nas migrations.">
+      <change afterPath="$PROJECT_DIR$/database/seeds/UnidadesSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/UsuariosSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_01_31_134739_create_produtos_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_03_11_235041_criptografar_senhas_usuarios.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_093245_create_clientes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_05_23_093245_create_clientes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_05_23_094612_create_pedido_produtos_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_10_172226_encrypt_user_passwords.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_06_11_202158_encrypt_senha_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/sobre-nos.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/sobre-nos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/sobre-nos.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/sobre-nos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/site/sobre-nos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/sobre-nos.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +289,12 @@
       <workItem from="1717941494873" duration="7328000" />
       <workItem from="1718050010181" duration="9933000" />
       <workItem from="1718101813392" duration="259000" />
-      <workItem from="1718129484433" duration="6882000" />
+      <workItem from="1718129484433" duration="7478000" />
+      <workItem from="1718153063724" duration="394000" />
+      <workItem from="1718188240620" duration="1097000" />
+      <workItem from="1718197873373" duration="2296000" />
+      <workItem from="1718230966533" duration="3419000" />
+      <workItem from="1718474546845" duration="2082000" />
     </task>
     <task id="LOCAL-00001" summary=":rocket: Criando algumas migrations">
       <option name="closed" value="true" />
@@ -506,7 +512,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718146130896</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary=":rocket: Ajustes nas migrations.">
+      <option name="closed" value="true" />
+      <created>1718148844626</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1718148844626</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +528,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value=":rocket: Criando o controller de PedidoController&#10;&#10;- Criando o PedidoModel&#10;&#10;- Criando o PedidoProdutoController&#10;&#10;- Criando o PedidoProdutoModel" />
     <MESSAGE value=":rocket: Outros ajustes nas estilizações, views e dependências." />
     <MESSAGE value=":rocket: Criando as migrations de pedidos e de pedido_produtos" />
     <MESSAGE value=":rocket: Ajustando o ClienteController.php e seus CSS." />
@@ -539,7 +552,8 @@
     <MESSAGE value=":rocket: Criando as mensagens ao fazer uma ação.&#10;&#10;- Ajustando as notificações flash no Cliente Controller.&#10;&#10;- Ajustando as notificações flash no Fornecedor Controller.&#10;&#10;- Ajustando as notificações flash no Pedido Controller.&#10;&#10;- Ajustando as notificações flash no Produto Controller." />
     <MESSAGE value=":rocket: Ajustes nos relacionamentos das Models.&#10;&#10;- Cliente o relacionamento de pedido na Model do Cliente.&#10;&#10;- Fazendo o mesmo processo para a model de Fornecedor.&#10;&#10;- Ajustes nos Scripts." />
     <MESSAGE value=":rocket: Ajustes nas rotas e nos métodos de exclusão." />
-    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Ajustes nas rotas e nos métodos de exclusão." />
+    <MESSAGE value=":rocket: Ajustes nas migrations." />
+    <option name="LAST_COMMIT_MESSAGE" value=":rocket: Ajustes nas migrations." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -3,3 +3,17 @@
     text-align: center;
     padding-bottom: 50px;
 }
+
+.title-h2 {
+    font-size: 25px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.informacao-pagina {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+}
