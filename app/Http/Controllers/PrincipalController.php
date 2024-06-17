@@ -16,10 +16,10 @@ class PrincipalController extends Controller
     public function index(): Factory|View|Application
     {
         try {
-            $total_pedidos = PedidoModel::count();
-            $total_clientes = ClienteModel::count();
-            $total_produtos = ProdutoModel::count();
-            $total_fornecedores = FornecedorModel::count();
+            $total_pedidos = (new PedidoModel)->count();
+            $total_clientes = (new ClienteModel)->count();
+            $total_produtos = (new ProdutoModel)->count();
+            $total_fornecedores = (new FornecedorModel)->count();
 
             return view('site.principal', [
                 'total_pedidos' => $total_pedidos,
